@@ -1,24 +1,13 @@
-# README
+# Proyecto Ingeniería de Software
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Pablo Garnham
+- Jose Antonio Subercaseaux
+- Tomas Correa
 
-Things you may want to cover:
+La página de heroku es:
 
-* Ruby version
+* https://intense-waters-42383.herokuapp.com/
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
