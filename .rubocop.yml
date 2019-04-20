@@ -1,0 +1,14 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Includes:
+    - Rakefile
+    - config.ru
+    - app/models/*.rb
+  Excludes:
+    - db/**
+    - config/**
+    - script/**
+    - vendor/**/* # Circle adds the rubies here
+  Metrics/MethodLength:
+    Max: 15
