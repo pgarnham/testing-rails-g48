@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190427171012) do
+ActiveRecord::Schema.define(version: 20190427222934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campus", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.binary "map"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "title"
@@ -26,6 +34,20 @@ ActiveRecord::Schema.define(version: 20190427171012) do
     t.integer "user_id"
   end
 
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.string "initials"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "author"
+    t.datetime "created_at", null: false
+    t.string "type"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -35,6 +57,16 @@ ActiveRecord::Schema.define(version: 20190427171012) do
     t.string "author"
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.float "disponibility"
+    t.float "noise"
+    t.float "plugs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @room.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @room.location %>
+</p>
+
+<p>
+  <strong>Disponibility:</strong>
+  <%= @room.disponibility %>
+</p>
+
+<p>
+  <strong>Noise:</strong>
+  <%= @room.noise %>
+</p>
+
+<p>
+  <strong>Plugs:</strong>
+  <%= @room.plugs %>
+</p>
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to 'Back', rooms_path %>
