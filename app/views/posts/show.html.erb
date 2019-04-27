@@ -44,8 +44,12 @@
         <h3><%= comment.content %></h3>
         <h4><%= comment.created_at.strftime("%d / %m / %Y") %></h4>
         <h5><%= link_to 'Show', post_comment_path(@post, comment) %></h5>
-        <h5><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></h5>
-        <h5><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %></h5>
+        <% if user_signed_in? %>
+          <% if comment.user_id == current_user.id %>
+            <h5><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></h5>
+            <h5><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %></h5>
+          <% end %>
+        <% end %>
     <% end %>
   </div>
 <br>
