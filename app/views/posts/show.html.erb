@@ -1,23 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+  <h1><%= @post.title %></h1>
 </p>
 
 <p>
-  <strong>Content:</strong>
-  <%= @post.content %>
+  <h3><%= @post.content %></h3>
 </p>
 
 <p>
   <strong>Created at:</strong>
-  <%= @post.created_at %>
+  <%= @post.created_at.strftime("%Y %m %d") %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @post.description %>
+  <h5><%= @post.description %></h5>
 </p>
 
 <p>
@@ -39,33 +37,19 @@
 
 <h1>Comentarios</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Titulo</th>
-      <th>Autor</th>
-      <th>Fecha</th>
-      <th>Contenido</th>
-      <th>Puntaje</th>
-      <th colspan="5"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+
+  <div class="container">
     <%= @post.comments.each do |comment| %>
-    <!–– Se fijan que acá usamos nuestra nuevo atributo songs? -->
-      <tr>
-        <td><%= comment.title %></td>
-        <td><%= comment.author %></td>
-        <td><%= comment.created_at %></td>
-        <td><%= link_to 'Show', post_comment_path(@post, comment) %></td>
-        <td><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></td>
-        <td><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %></td>
-      </tr>
+        <h3><%= comment.content %></h3>
+        <h4><%= comment.created_at.strftime("%d / %m / %Y") %></h4>
+        <h5><%= link_to 'Show', post_comment_path(@post, comment) %></h5>
+        <h5><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></h5>
+        <h5><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %></h5>
     <% end %>
-  </tbody>
-</table>
-
+  </div>
 <br>
 
 <%= link_to 'Nuevo Comentario', new_post_comment_path(@post) %>
+<br>
+<br>
