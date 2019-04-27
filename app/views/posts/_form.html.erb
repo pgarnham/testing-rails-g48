@@ -22,11 +22,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :created_at %>
-    <%= form.datetime_select :created_at, id: :post_created_at %>
-  </div>
-
-  <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description, id: :post_description %>
   </div>
@@ -36,10 +31,6 @@
     <%= form.text_field :reputation, id: :post_reputation %>
   </div>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author, id: :post_author %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

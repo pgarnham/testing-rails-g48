@@ -27,8 +27,45 @@
 
 <p>
   <strong>Author:</strong>
-  <%= @post.author %>
+  <%= User.find(@post.user_id).name + " " + User.find(@post.user_id).last_name %>
 </p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<% if user_signed_in? %>
+  <% if @post.user_id == current_user.id %>
+    <%= link_to 'Editar', edit_post_path(@post) %> |
+    <%= link_to 'Eliminar', post_path(@post), method: :delete, data: {confirm: "Estas Seguro?"} %> |
+  <% end %>
+<% end %>
 <%= link_to 'Back', posts_path %>
+
+<h1>Comentarios</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Autor</th>
+      <th>Fecha</th>
+      <th>Contenido</th>
+      <th>Puntaje</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= @post.comments.each do |comment| %>
+    <!–– Se fijan que acá usamos nuestra nuevo atributo songs? -->
+      <tr>
+        <td><%= comment.title %></td>
+        <td><%= comment.author %></td>
+        <td><%= comment.created_at %></td>
+        <td><%= link_to 'Show', post_comment_path(@post, comment) %></td>
+        <td><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></td>
+        <td><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Comentario', new_post_comment_path(@post) %>
