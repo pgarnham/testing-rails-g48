@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ocupadas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ocupadas.each do |ocupada| %>
+      <tr>
+        <td><%= ocupada.description %></td>
+        <td><%= ocupada.start %></td>
+        <td><%= ocupada.finish %></td>
+        <td><%= link_to 'Show', ocupada %></td>
+        <td><%= link_to 'Edit', edit_ocupada_path(ocupada) %></td>
+        <td><%= link_to 'Destroy', ocupada, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ocupada', new_ocupada_path %>

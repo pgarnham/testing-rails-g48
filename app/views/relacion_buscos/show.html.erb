@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @relacion_busco.user_id %>
+</p>
+
+<p>
+  <strong>Busco:</strong>
+  <%= @relacion_busco.busco_id %>
+</p>
+
+<%= link_to 'Edit', edit_relacion_busco_path(@relacion_busco) %> |
+<%= link_to 'Back', relacion_buscos_path %>

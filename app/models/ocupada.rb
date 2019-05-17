@@ -1,0 +1,2 @@
+class Ocupada < ApplicationRecord
+end

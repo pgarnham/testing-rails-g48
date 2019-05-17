@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :eventos
+  resources :ocupadas
+  resources :ofrezcos
+  resources :relacion_buscos
+  resources :buscos
   resources :group_members
   resources :groups
   resources :courses

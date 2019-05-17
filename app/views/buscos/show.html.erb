@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @busco.course %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @busco.start %>
+</p>
+
+<p>
+  <strong>Finish:</strong>
+  <%= @busco.finish %>
+</p>
+
+<%= link_to 'Edit', edit_busco_path(@busco) %> |
+<%= link_to 'Back', buscos_path %>

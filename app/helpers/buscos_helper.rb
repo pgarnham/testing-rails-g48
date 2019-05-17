@@ -1,0 +1,2 @@
+module BuscosHelper
+end

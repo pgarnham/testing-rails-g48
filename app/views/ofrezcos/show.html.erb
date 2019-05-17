@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @ofrezco.course %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @ofrezco.start %>
+</p>
+
+<p>
+  <strong>Finish:</strong>
+  <%= @ofrezco.finish %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @ofrezco.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_ofrezco_path(@ofrezco) %> |
+<%= link_to 'Back', ofrezcos_path %>

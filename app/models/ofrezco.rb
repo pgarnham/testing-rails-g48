@@ -1,0 +1,2 @@
+class Ofrezco < ApplicationRecord
+end

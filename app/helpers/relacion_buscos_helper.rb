@@ -1,0 +1,2 @@
+module RelacionBuscosHelper
+end

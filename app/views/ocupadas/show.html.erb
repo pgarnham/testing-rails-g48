@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ocupada.description %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @ocupada.start %>
+</p>
+
+<p>
+  <strong>Finish:</strong>
+  <%= @ocupada.finish %>
+</p>
+
+<%= link_to 'Edit', edit_ocupada_path(@ocupada) %> |
+<%= link_to 'Back', ocupadas_path %>

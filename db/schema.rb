@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190427222934) do
+ActiveRecord::Schema.define(version: 20190517032638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buscos", force: :cascade do |t|
+    t.string "course"
+    t.datetime "start"
+    t.datetime "finish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "campus", force: :cascade do |t|
     t.string "name"
@@ -41,10 +49,41 @@ ActiveRecord::Schema.define(version: 20190427222934) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "author"
+  create_table "eventos", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "type"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "group_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "course"
+    t.integer "capacity"
+    t.datetime "start"
+    t.datetime "finish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ocupadas", force: :cascade do |t|
+    t.string "description"
+    t.datetime "start"
+    t.datetime "finish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ofrezcos", force: :cascade do |t|
+    t.string "course"
+    t.datetime "start"
+    t.datetime "finish"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
@@ -57,6 +96,13 @@ ActiveRecord::Schema.define(version: 20190427222934) do
     t.string "author"
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "relacion_buscos", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "busco_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rooms", force: :cascade do |t|
