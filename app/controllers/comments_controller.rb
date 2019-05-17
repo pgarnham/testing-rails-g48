@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.all
+    @post = Post.find(params[:post_id])
   end
 
   # GET /comments/1
@@ -21,6 +22,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    @post = Post.find(params[:post_id])
   end
 
   # POST /comments

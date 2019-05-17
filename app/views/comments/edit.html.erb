@@ -1,5 +1,18 @@
 <h1>Editando Comentarios</h1>
 
-<%= render 'form', comment: @comment %>
+<%=form_for([@post, @comment]) do |form| %>
 
-<%= link_to 'Back', post_path(@comment.post_id) %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, id: :comment_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reputation %>
+    <%= form.text_field :reputation, id: :comment_reputation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
