@@ -6,9 +6,11 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :GroupMembers
-  has_many :Groups, through: :GroupMembers
+  has_many :ofrezcos
   has_many :RelacionBuscos
-  has_many :Buscos, through: :RelacionBuscos
+  has_many :buscos, through: :RelacionBuscos
+  has_many :groups, through: :GroupMembers
+
 
   #attr_accessible :first_name, :last_name
   #validates_presence_of :first_name, :last_name

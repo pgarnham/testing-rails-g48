@@ -1,13 +1,79 @@
 <p id="notice"><%= notice %></p>
 
 
-
-
-
-
 <h1>Eventos</h1>
+<br>
+<br>
+<h4>Eventos Salas Ocupadas</h4>
+<tbody>
+  <% Ocupada.all.each do |ocupada| %>
+    <tr>
+      <td><%= link_to ocupada.description, ocupada %></td>
+      <td><%= ocupada.start %></td>
+      <td><%= ocupada.finish %></td>
+      <br>
+    </tr>
+  <% end %>
+</tbody>
 
-<%= link_to 'New Ocupada', new_ocupada_path %>
-<%= link_to 'New Busco', new_busco_path %>
-<%= link_to 'New Ofrezco', new_ofrezco_path %>
-<%= link_to 'New Group', new_group_path %>
+<br>
+<h4>Eventos Busco Clases</h4>
+<tbody>
+  <% Busco.all.each do |busco| %>
+    <tr>
+      <td><%= link_to busco.course, busco %></td>
+      <td><%= busco.start %></td>
+      <td><%= busco.finish %></td>
+      <br>
+    </tr>
+  <% end %>
+</tbody>
+
+<br>
+<h4>Eventos Ofrezco Clases</h4>
+<tbody>
+  <% Ofrezco.all.each do |ofrezco| %>
+    <tr>
+      <td><%= link_to ofrezco.course, ofrezco %></td>
+      <td><%= ofrezco.start %></td>
+      <td><%= ofrezco.finish %></td>
+      <td><%= User.find(ofrezco.user_id).name + " " + User.find(ofrezco.user_id).last_name %></td>
+      <br>
+
+    </tr>
+  <% end %>
+</tbody>
+
+<br>
+<h4>Eventos Grupos de Estudio</h4>
+<tbody>
+  <% Group.all.each do |group| %>
+    <tr>
+      <td><%= link_to group.course, group %></td>
+      <td><%= group.capacity %></td>
+      <td><%= group.start %></td>
+      <td><%= group.finish %></td>
+      <br>
+    </tr>
+  <% end %>
+</tbody>
+
+<br>
+
+
+
+<div class="container">
+  <%= link_to 'New Ocupada', new_ocupada_path %>
+</div>
+
+<div class="container">
+  <%= link_to 'New Busco', new_busco_path %>
+</div>
+
+<div class="container">
+  <%= link_to 'New Ofrezco', new_ofrezco_path %>
+</div>
+
+<div class="container">
+  <%= link_to 'New Group', new_group_path %>
+</div>

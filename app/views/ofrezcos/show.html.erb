@@ -16,9 +16,9 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @ofrezco.user_id %>
+  <strong>Profesor:</strong>
+  <%= User.find(@ofrezco.user_id).name + " " + User.find(@ofrezco.user_id).last_name%>
 </p>
 
 <%= link_to 'Edit', edit_ofrezco_path(@ofrezco) %> |
-<%= link_to 'Back', ofrezcos_path %>
+<%= link_to 'Back', eventos_path %>

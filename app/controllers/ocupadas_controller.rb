@@ -28,7 +28,7 @@ class OcupadasController < ApplicationController
 
     respond_to do |format|
       if @ocupada.save
-        format.html { redirect_to @ocupada, notice: 'Ocupada was successfully created.' }
+        format.html { redirect_to eventos_path , notice: 'Ocupada was successfully created.' }
         format.json { render :show, status: :created, location: @ocupada }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class OcupadasController < ApplicationController
   def update
     respond_to do |format|
       if @ocupada.update(ocupada_params)
-        format.html { redirect_to @ocupada, notice: 'Ocupada was successfully updated.' }
+        format.html { redirect_to eventos_path, notice: 'Ocupada was successfully updated.' }
         format.json { render :show, status: :ok, location: @ocupada }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class OcupadasController < ApplicationController
   def destroy
     @ocupada.destroy
     respond_to do |format|
-      format.html { redirect_to ocupadas_url, notice: 'Ocupada was successfully destroyed.' }
+      format.html { redirect_to eventos_path, notice: 'Ocupada was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

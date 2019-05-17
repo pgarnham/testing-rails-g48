@@ -28,7 +28,7 @@ class BuscosController < ApplicationController
 
     respond_to do |format|
       if @busco.save
-        format.html { redirect_to @busco, notice: 'Busco was successfully created.' }
+        format.html { redirect_to eventos_path, notice: 'Busco was successfully created.' }
         format.json { render :show, status: :created, location: @busco }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class BuscosController < ApplicationController
   def update
     respond_to do |format|
       if @busco.update(busco_params)
-        format.html { redirect_to @busco, notice: 'Busco was successfully updated.' }
+        format.html { redirect_to eventos_path, notice: 'Busco was successfully updated.' }
         format.json { render :show, status: :ok, location: @busco }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class BuscosController < ApplicationController
   def destroy
     @busco.destroy
     respond_to do |format|
-      format.html { redirect_to buscos_url, notice: 'Busco was successfully destroyed.' }
+      format.html { redirect_to eventos_path, notice: 'Busco was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class BuscosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def busco_params
-      params.require(:busco).permit(:course, :start, :finish)
+      params.require(:busco).permit(:course, :start, :finish, :evento_id)
     end
 end

@@ -20,5 +20,28 @@
   <%= @group.finish %>
 </p>
 
+<div class="container">
+
+  <% GroupMember.all.each do |relacion| %>
+    <% if relacion.group_id == @group.id%>
+      <p>
+        <%= User.find(relacion.user_id).name + " " + User.find(relacion.user_id).last_name %>
+      </p>
+
+    <% end %>
+  <%end%>
+
+</div>
+
+
+
+<br>
+<%= link_to "Unirse", new_group_member_path(@group) %>
+<br>
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Back', eventos_path %>
+
+<div style="display: none">
+  <%= $current_group_id = @group.id%>
+</div>

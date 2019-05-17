@@ -14,7 +14,7 @@ class OfrezcosController < ApplicationController
 
   # GET /ofrezcos/new
   def new
-    @ofrezco = Ofrezco.new
+    @ofrezco = current_user.ofrezcos.build
   end
 
   # GET /ofrezcos/1/edit
@@ -24,11 +24,11 @@ class OfrezcosController < ApplicationController
   # POST /ofrezcos
   # POST /ofrezcos.json
   def create
-    @ofrezco = Ofrezco.new(ofrezco_params)
+    @ofrezco = current_user.ofrezcos.build(ofrezco_params)
 
     respond_to do |format|
       if @ofrezco.save
-        format.html { redirect_to @ofrezco, notice: 'Ofrezco was successfully created.' }
+        format.html { redirect_to eventos_path, notice: 'Ofrezco was successfully created.' }
         format.json { render :show, status: :created, location: @ofrezco }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class OfrezcosController < ApplicationController
   def update
     respond_to do |format|
       if @ofrezco.update(ofrezco_params)
-        format.html { redirect_to @ofrezco, notice: 'Ofrezco was successfully updated.' }
+        format.html { redirect_to eventos_path, notice: 'Ofrezco was successfully updated.' }
         format.json { render :show, status: :ok, location: @ofrezco }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class OfrezcosController < ApplicationController
   def destroy
     @ofrezco.destroy
     respond_to do |format|
-      format.html { redirect_to ofrezcos_url, notice: 'Ofrezco was successfully destroyed.' }
+      format.html { redirect_to eventos_path, notice: 'Ofrezco was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
