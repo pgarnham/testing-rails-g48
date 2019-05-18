@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :registrados
+  resources :moderadors
   resources :administradors
   resources :contenidos
   resources :eventos

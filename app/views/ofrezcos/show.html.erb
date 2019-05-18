@@ -20,5 +20,7 @@
   <%= User.find(@ofrezco.user_id).name + " " + User.find(@ofrezco.user_id).last_name%>
 </p>
 
-<%= link_to 'Edit', edit_ofrezco_path(@ofrezco) %> |
-<%= link_to 'Back', eventos_path %>
+<%= link_to 'Atrás', eventos_path %> |
+<% if @ofrezco.user_id == current_user.id or current_user.rol=="moderador" or current_user.rol=="administrador"%>
+  <%= link_to 'Editar', edit_ofrezco_path(@ofrezco) %>
+<% end %>

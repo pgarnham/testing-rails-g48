@@ -29,7 +29,7 @@
         <h4><%= comment.content %></h4>
 
         <% if user_signed_in? %>
-          <% if comment.user_id == current_user.id %>
+          <% if comment.user_id == current_user.id or current_user.rol=="moderador" or current_user.rol=="administrador"%>
             <%= link_to 'Editar', edit_post_comment_path(@post, comment) %> |
             <%= link_to 'Eliminar', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %>
             <br>
@@ -45,7 +45,7 @@
 <br>
 <button><%= link_to 'Atrás', posts_path %></button>
 <% if user_signed_in? %>
-  <% if @post.user_id == current_user.id %>
+  <% if @post.user_id == current_user.id or current_user.rol=="moderador" or current_user.rol=="administrador"%>
     <button><%= link_to 'Editar', edit_post_path(@post) %></button>
     <button><%= link_to 'Eliminar', post_path(@post), method: :delete, data: {confirm: "Estas Seguro?"} %></button>
   <% end %>
