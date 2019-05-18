@@ -1,25 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Contenidos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @contenidos.each do |contenido| %>
-      <tr>
-        <td><%= link_to 'Show', contenido %></td>
-        <td><%= link_to 'Edit', edit_contenido_path(contenido) %></td>
-        <td><%= link_to 'Destroy', contenido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= current_user.actualizar_rol("admin") %>
+<h2>¡Rol actualizado con éxito!</h2>
+<button> <%= link_to "Volver", posts_path %> </button>
 <br>
-
-<%= link_to 'New Contenido', new_contenido_path %>
+<button> <%= link_to "Actualizar Rol", contenidos_path %> </button>
