@@ -6,8 +6,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :GroupMembers
-  has_many :Groups,
-through: :GroupMember
+  has_many :Groups, through: :GroupMember
 
   #attr_accessible :first_name, :last_name
   #validates_presence_of :first_name, :last_name
