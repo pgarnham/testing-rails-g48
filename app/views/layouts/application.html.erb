@@ -30,7 +30,7 @@
           <% if user_signed_in? %>
           <li><%= link_to "Contenido", campus_path %></li>
           <li><%= link_to "Mi Perfil", "#" %></li>
-          <li><%= link_to "Solicitudes", "#" %></li>
+          <li><%= link_to "Solicitudes", contenidos_path %></li>
           <li><%= link_to "Mensajeria", "#" %></li>
           <li><%= link_to "Cerrar Sesion", destroy_user_session_path,
             method: :delete %></li>

@@ -1,5 +1,2 @@
-<%= current_user.actualizar_rol("admin") %>
-<h2>¡Rol actualizado con éxito!</h2>
-<button> <%= link_to "Volver", posts_path %> </button>
-<br>
-<button> <%= link_to "Actualizar Rol", contenidos_path %> </button>
+<%= current_user.rol %>
+<button> <%= link_to "Rol Administrador", administradors_path %> </button>
