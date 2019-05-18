@@ -1,0 +1,2 @@
+class Contenido < ApplicationRecord
+end

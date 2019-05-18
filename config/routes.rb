@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contenidos
   resources :eventos
   resources :ocupadas
   resources :ofrezcos

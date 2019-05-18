@@ -17,6 +17,7 @@
 
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
+          <li><%= link_to current_user.name + " " + current_user.last_name, posts_path, class: "navbar-brand" %></li>
 
           <% else %>
           <li><%= link_to "Iniciar Sesion", new_user_session_path %></li>
@@ -27,7 +28,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li><%= link_to "Contenido", "#" %></li>
+          <li><%= link_to "Contenido", campus_path %></li>
           <li><%= link_to "Mi Perfil", "#" %></li>
           <li><%= link_to "Solicitudes", "#" %></li>
           <li><%= link_to "Mensajeria", "#" %></li>
