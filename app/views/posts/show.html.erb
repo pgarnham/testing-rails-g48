@@ -3,55 +3,50 @@
 <p>
   <h1><%= @post.title %></h1>
 </p>
-
 <p>
-  <h3><%= @post.content %></h3>
-</p>
-
-<p>
-  <strong>Created at:</strong>
-  <%= @post.created_at.strftime("%Y %m %d") %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <h5><%= @post.description %></h5>
-</p>
-
-<p>
-  <strong>Reputation:</strong>
+  <%= @post.created_at.strftime("%d - %m - %Y") %> |
+  <%= User.find(@post.user_id).name + " " + User.find(@post.user_id).last_name %>  |
   <%= @post.reputation %>
 </p>
 
+
 <p>
-  <strong>Author:</strong>
-  <%= User.find(@post.user_id).name + " " + User.find(@post.user_id).last_name %>
+  <h3><%= @post.description %></h3>
 </p>
-<% if user_signed_in? %>
-  <% if @post.user_id == current_user.id %>
-    <%= link_to 'Editar', edit_post_path(@post) %> |
-    <%= link_to 'Eliminar', post_path(@post), method: :delete, data: {confirm: "Estas Seguro?"} %> |
-  <% end %>
-<% end %>
-<%= link_to 'Back', posts_path %>
-
-<h1>Comentarios</h1>
+<p>
+  <h5><%= @post.content %></h5>
+</p>
 
 
+
+<h2>Comentarios</h2>
 
   <div class="container">
     <%= @post.comments.each do |comment| %>
-        <h3><%= comment.content %></h3>
-        <h4><%= comment.created_at.strftime("%d / %m / %Y") %></h4>
-        <h5><%= link_to 'Show', post_comment_path(@post, comment) %></h5>
+        <small><%= comment.created_at.strftime("%d - %m - %Y") %> |
+        <%= User.find(comment.user_id).name + " " + User.find(comment.user_id).last_name %>
+        </small>
+        <h4><%= comment.content %></h4>
+
         <% if user_signed_in? %>
           <% if comment.user_id == current_user.id %>
-            <h5><%= link_to 'Edit', edit_post_comment_path(@post, comment) %></h5>
-            <h5><%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %></h5>
+            <%= link_to 'Editar', edit_post_comment_path(@post, comment) %> |
+            <%= link_to 'Eliminar', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %>
+            <br>
           <% end %>
         <% end %>
+        <br>
+
     <% end %>
+    <br>
+    <button><%= link_to 'Nuevo Comentario', new_post_comment_path(@post) %></button>
   </div>
 
-
-<%= link_to 'Nuevo Comentario', new_post_comment_path(@post) %>
+<br>
+<button><%= link_to 'Atrás', posts_path %></button>
+<% if user_signed_in? %>
+  <% if @post.user_id == current_user.id %>
+    <button><%= link_to 'Editar', edit_post_path(@post) %></button>
+    <button><%= link_to 'Eliminar', post_path(@post), method: :delete, data: {confirm: "Estas Seguro?"} %></button>
+  <% end %>
+<% end %>
