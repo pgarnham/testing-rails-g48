@@ -32,7 +32,7 @@
 <tbody>
   <% Busco.all.each do |busco| %>
     <tr>
-      <td><h4><%= link_to busco.course, busco %></h4></td>
+      <td><h4><%= link_to Course.find(busco.course_id), busco %></h4></td>
       <td><%= busco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
       <td>   ||   </td>
       <td><%= busco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
@@ -47,7 +47,7 @@
 <tbody>
   <% Ofrezco.all.each do |ofrezco| %>
     <tr>
-      <td><h4><%= link_to ofrezco.course + "  ||  " + User.find(ofrezco.user_id).name + " " + User.find(ofrezco.user_id).last_name, ofrezco %></h4></td>
+      <td><h4><%= link_to Course.find(ofrezco.course_id) + "  ||  " + User.find(ofrezco.user_id).name + " " + User.find(ofrezco.user_id).last_name, ofrezco %></h4></td>
       <td><%= ofrezco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
       <td>   ||   </td>
       <td><%= ofrezco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
@@ -62,7 +62,7 @@
 <tbody>
   <% Group.all.each do |group| %>
     <tr>
-      <td><h4><%= link_to group.course + "  ||  " + group.capacity.to_s + "p.", group %></h4></td>
+      <td><h4><%= link_to Course.find(group.course_id) + "  ||  " + group.capacity.to_s + "p.", group %></h4></td>
       <td><%= group.start.strftime("%H:%M --- %d/%m/%Y") %></td>
       <td>   ||   </td>
       <td><%= group.start.strftime("%H:%M --- %d/%m/%Y") %></td>

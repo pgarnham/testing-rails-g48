@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190613032232) do
+ActiveRecord::Schema.define(version: 20190613211951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "administradors", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "alumnos", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +67,13 @@ ActiveRecord::Schema.define(version: 20190613032232) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "destacadas", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "eventos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -83,6 +97,15 @@ ActiveRecord::Schema.define(version: 20190613032232) do
     t.integer "course_id"
   end
 
+  create_table "mensajes", force: :cascade do |t|
+    t.integer "autor"
+    t.integer "receptor"
+    t.text "contenido"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "titulo"
+  end
+
   create_table "moderadors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -94,16 +117,19 @@ ActiveRecord::Schema.define(version: 20190613032232) do
     t.datetime "finish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.integer "room_id"
   end
 
   create_table "ofrezcos", force: :cascade do |t|
-    t.string "course"
     t.datetime "start"
     t.datetime "finish"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "room_id"
+    t.integer "precio"
+    t.integer "course_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -115,6 +141,13 @@ ActiveRecord::Schema.define(version: 20190613032232) do
     t.string "author"
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "profesors", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "registrados", force: :cascade do |t|
@@ -141,6 +174,18 @@ ActiveRecord::Schema.define(version: 20190613032232) do
   end
 
   create_table "salita", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sol_admins", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sol_moderadors", force: :cascade do |t|
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
