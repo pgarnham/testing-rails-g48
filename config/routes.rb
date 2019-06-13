@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :salita
   resources :registrados
   resources :moderadors
   resources :administradors

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190518231226) do
+ActiveRecord::Schema.define(version: 20190613032232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20190518231226) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "evento_id"
-    t.integer "user_id"
   end
 
   create_table "campus", force: :cascade do |t|
@@ -74,12 +73,14 @@ ActiveRecord::Schema.define(version: 20190518231226) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string "course"
     t.integer "capacity"
     t.datetime "start"
     t.datetime "finish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "room_id"
+    t.integer "user_id"
+    t.integer "course_id"
   end
 
   create_table "moderadors", force: :cascade do |t|
@@ -134,6 +135,12 @@ ActiveRecord::Schema.define(version: 20190518231226) do
     t.float "disponibility"
     t.float "noise"
     t.float "plugs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "campu_id"
+  end
+
+  create_table "salita", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

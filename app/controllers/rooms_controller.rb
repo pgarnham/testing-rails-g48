@@ -15,16 +15,19 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    @campuses = Campu.all.map{ |c| [c.name, c.id]}
   end
 
   # GET /rooms/1/edit
   def edit
+    @campuses = Campu.all.map{ |c| [c.name, c.id]}
   end
 
   # POST /rooms
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.campu_id = params[:campu_id]
 
     respond_to do |format|
       if @room.save
@@ -40,6 +43,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
   def update
+    @room.campu_id = params[:campu_id]
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to @room, notice: 'Room was successfully updated.' }
@@ -69,6 +73,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :location, :disponibility, :noise, :plugs)
+      params.require(:room).permit(:name, :location, :disponibility, :noise, :plugs, :campu_id)
     end
 end

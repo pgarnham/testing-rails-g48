@@ -16,10 +16,18 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
-        <td><%= group.course %></td>
+        <td><%= Room.find(group.room_id).name %></td>
+        <td><%= Course.find(group.course_id).name %></td>
+        <td><%= User.find(group.user_id).name + " " + User.find(group.user_id).last_name %></td>
         <td><%= group.capacity %></td>
         <td><%= group.start %></td>
         <td><%= group.finish %></td>
+        <h4>Integrantes</h4>
+        <% GroupMember.all.each do |r| %>
+          <% if r.group_id == group.id %>
+            <%= User.find(r.user_id).name + " " + User.find(r.user_id).last_name %>
+          <% end %>
+        <% end %>
         <td><%= link_to 'Show', group %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
