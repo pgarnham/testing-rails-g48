@@ -1,0 +1,2 @@
+module SolAdminsHelper
+end

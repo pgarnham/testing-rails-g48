@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :destacadas
+  resources :profesors
+  resources :alumnos
+  resources :mensajes
+  resources :sol_admins
+  resources :sol_moderadors
   resources :salita
   resources :registrados
   resources :moderadors
