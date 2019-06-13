@@ -15,6 +15,7 @@ class GroupMembersController < ApplicationController
   # GET /group_members/new
   def new
     @group_member = GroupMember.new
+    @grupo_r = params[:grupo_actual]
   end
 
   # GET /group_members/1/edit

@@ -34,10 +34,9 @@
 </div>
 
 
-
 <br>
 <button>
-<%= link_to "Unirse", new_group_member_path(@group) %>
+<%= link_to "Unirse", new_group_member_path(:grupo_actual => @group.id) %>
 </button>
 <br>
 

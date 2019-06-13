@@ -14,17 +14,21 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = Group.new
+    @group = current_user.groups.build
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
+    @id_recibido = params[:room_id]
   end
 
   # GET /groups/1/edit
   def edit
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.build(group_params)
+    @group.course_id = params[:course_id]
 
     respond_to do |format|
       if @group.save
@@ -40,6 +44,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
+    @group.course_id = params[:course_id]
     respond_to do |format|
       if @group.update(group_params)
         format.html { redirect_to eventos_path, notice: 'Group was successfully updated.' }
@@ -69,6 +74,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:course, :capacity, :start, :finish)
+      params.require(:group).permit(:course, :capacity, :start, :finish, :room_id, :user_id, :course_id)
     end
 end
