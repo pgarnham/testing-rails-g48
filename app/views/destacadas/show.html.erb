@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @destacada.user_id %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @destacada.post_id %>
+</p>
+
+<%= link_to 'Edit', edit_destacada_path(@destacada) %> |
+<%= link_to 'Back', destacadas_path %>

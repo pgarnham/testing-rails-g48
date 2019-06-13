@@ -1,0 +1,2 @@
+class SolAdmin < ApplicationRecord
+end

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sol Admins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sol_admins.each do |sol_admin| %>
+      <tr>
+        <td><%= sol_admin.user_id %></td>
+        <td><%= link_to 'Show', sol_admin %></td>
+        <td><%= link_to 'Edit', edit_sol_admin_path(sol_admin) %></td>
+        <td><%= link_to 'Destroy', sol_admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sol Admin', new_sol_admin_path %>
