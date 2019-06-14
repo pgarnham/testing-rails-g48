@@ -4,7 +4,8 @@ class MensajesController < ApplicationController
   # GET /mensajes
   # GET /mensajes.json
   def index
-    @mensajes = Mensaje.all
+    @mensajes_recibidos = Mensaje.where(:receptor => current_user.id)
+    @mensajes_enviados = Mensaje.where(:autor => current_user.id)
   end
 
   # GET /mensajes/1
@@ -15,17 +16,21 @@ class MensajesController < ApplicationController
   # GET /mensajes/new
   def new
     @mensaje = Mensaje.new
+    @todos_menos_yo = User.where.not(:id => current_user.id)
+    @usuarios = @todos_menos_yo.map{ |c| [c.name + " " + c.last_name, c.id]}
   end
 
   # GET /mensajes/1/edit
   def edit
+    @todos_menos_yo = User.where.not(:id => current_user.id)
+    @usuarios = @todos_menos_yo.map{ |c| [c.name + " " + c.last_name, c.id]}
   end
 
   # POST /mensajes
   # POST /mensajes.json
   def create
     @mensaje = Mensaje.new(mensaje_params)
-
+    @mensaje.receptor = params[:receptor]
     respond_to do |format|
       if @mensaje.save
         format.html { redirect_to @mensaje, notice: 'Mensaje was successfully created.' }
@@ -40,6 +45,7 @@ class MensajesController < ApplicationController
   # PATCH/PUT /mensajes/1
   # PATCH/PUT /mensajes/1.json
   def update
+    @mensaje.receptor = params[:receptor]
     respond_to do |format|
       if @mensaje.update(mensaje_params)
         format.html { redirect_to @mensaje, notice: 'Mensaje was successfully updated.' }
@@ -69,6 +75,6 @@ class MensajesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mensaje_params
-      params.require(:mensaje).permit(:autor, :receptor, :contenido)
+      params.require(:mensaje).permit(:autor, :receptor, :contenido, :titulo)
     end
 end

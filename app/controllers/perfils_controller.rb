@@ -5,8 +5,58 @@ class PerfilsController < ApplicationController
   # GET /perfils.json
   def index
     @perfils = Perfil.all
-    @cursos_totales = Course.all.map{ |c| [c.name, c.id] }
+
+
+    @soy_alumno = Alumno.where(:user_id => current_user.id)
+    @id_cursos_donde_soy_alumno = []
+    @soy_alumno.each do |alumno|
+      @id_cursos_donde_soy_alumno << alumno.course_id
+    end
+    if @id_cursos_donde_soy_alumno.length == 0
+      @cursos_totales_no_alumno = Course.all.map{ |c| [c.name, c.id] }
+    else
+      @cursos_donde_no_soy_alumno = Course.where('id NOT IN (?)', Array.wrap(@id_cursos_donde_soy_alumno))
+      @cursos_totales_no_alumno = @cursos_donde_no_soy_alumno.map{ |c| [c.name, c.id] }
+    end
+
     @alumno = Alumno.new
+    @cursos_inscritos = Alumno.where(:user_id => current_user.id)
+
+
+
+    @soy_profe = Profesor.where(:user_id => current_user.id)
+    @id_cursos_donde_soy_profe = []
+    @soy_profe.each do |profe|
+      @id_cursos_donde_soy_profe << profe.course_id
+    end
+    if @id_cursos_donde_soy_profe.length == 0
+      @cursos_totales_no_profe = Course.all.map{ |c| [c.name, c.id] }
+    else
+      @cursos_donde_no_soy_profe = Course.where('id NOT IN (?)', Array.wrap(@id_cursos_donde_soy_profe))
+      @cursos_totales_no_profe = @cursos_donde_no_soy_profe.map{ |c| [c.name, c.id] }
+    end
+
+    @profesor = Profesor.new
+    @profe_inscritos = Profesor.where(:user_id => current_user.id)
+
+
+
+    @mis_publicaciones = Destacada.where(:user_id => current_user.id)
+
+
+    @mis_eventos = []
+    @ev_grupo = GroupMember.where(:user_id => current_user.id)
+    @ev_grupo.each do |ev|
+      @mis_eventos << Group.find(ev.group_id)
+    end
+    @ev_busco = RelacionBusco.where(:user_id => current_user.id)
+    @ev_grupo.each do |busco|
+      @mis_eventos << Busco.find(ev.busco_id)
+    end
+    @mis_ofrezcos = Ofrezco.where(:user_id => current_user.id)
+    @mis_ofrezcos.each do |of|
+      @mis_eventos << of
+    end
   end
 
   # GET /perfils/1

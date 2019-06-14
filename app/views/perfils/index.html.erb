@@ -13,6 +13,7 @@
     <tr>
       <% if alumno.user_id == current_user.id %>
         <td><h4><%= Course.find(alumno.course_id).initials + "  ---  " + Course.find(alumno.course_id).name %></h4></td>
+        <%= alumno.class %>
       <% end %>
       <br>
     </tr>
@@ -28,7 +29,7 @@
     </div>
 
     <div class="form-inputs">
-      <%= f.select :course_id, options_for_select(@cursos_totales), :prompt => "Elige un Curso" %>
+      <%= f.select :course_id, options_for_select(@cursos_totales_no_alumno), :prompt => "Elige un Curso" %>
     </div>
 
     <div class="form-actions">
@@ -40,7 +41,7 @@
     <ul class="nav nav-tabs">
   <li class="nav-item">
      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-        Eliminar un Curso Inscrito
+        Eliminar un Curso Inscrito como Alumno
        <span class="caret"></span>
      </a>
     <ul class="dropdown-menu" role="menu">
@@ -61,19 +62,106 @@
 
 <h3>Cursos Profesor Particular</h3>
 <tbody>
-  <% Ocupada.all.each do |ocupada| %>
+  <% Profesor.all.each do |profe| %>
     <tr>
-      <td><h4><%= link_to ocupada.description, ocupada %></h4></td>
-      <td><%= ocupada.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <td>   ||   </td>
-      <td><%= ocupada.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <br>
+      <% if profe.user_id == current_user.id %>
+        <td><h4><%= Course.find(profe.course_id).initials + "  ---  " + Course.find(profe.course_id).name %></h4></td>
+      <% end %>
       <br>
     </tr>
   <% end %>
-</tbody>
 <br>
 
-<br>
+<%= simple_form_for(@profesor) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= link_to 'New Perfil', new_perfil_path %>
+  <div class="form-inputs">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.select :course_id, options_for_select(@cursos_totales_no_profe), :prompt => "Elige un Curso" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+
+<div class="container">
+  <ul class="nav nav-tabs">
+<li class="nav-item">
+   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+      Eliminar un Curso Inscrito como Profesor
+     <span class="caret"></span>
+   </a>
+  <ul class="dropdown-menu" role="menu">
+    <% @profe_inscritos.each do |profe| %>
+    <li>
+      <%= link_to Course.find(profe.course_id).name, profe, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+    <% end %>
+  </ul>
+</li>
+</ul>
+</div>
+
+<br><br>
+
+
+<h3>Mis Eventos</h3>
+
+  <% @mis_eventos.each do |evento| %>
+    <tr>
+      <% if evento.class == 'Busco' %>
+
+        <h5> Busco clases particulares de <%= Course.find(evento.course_id).name %> </h5>
+        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
+        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
+        <h5> Término del evento: <%= evento.start %> </h5>
+        <h5>Autor del evento: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name %></h5>
+
+      <% elsif evento.class == 'Ofrezco' %>
+
+        <h5> Ofrezco clases particulares de <%= Course.find(evento.course_id).name %></h5>
+        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
+        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
+        <h5> Término del evento: <%= evento.finish %> </h5>
+
+      <% elsif evento.class == 'Group' %>
+
+        <h5> Grupo de estudio para <%= Course.find(evento.course_id).name %> </h5>
+        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
+        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
+        <h5> Término del Evento: <%= evento.finish %> </h5>
+        <h5>Autor del evento: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name %></h5>
+
+      <% else %>
+
+        <h5> Descripción: <%= evento.description %> </h5>
+        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
+        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
+        <h5> Término del Evento: <%= evento.finish %> </h5>
+      <% end %>
+      <br><br><br>
+    </tr>
+  <% end %>
+<br><br>
+
+
+<h3>Mis Publicaciones Destacadas</h3>
+
+  <% @mis_publicaciones.each do |pub| %>
+    <tr>
+      <%= Post.find(pub.post_id).title %>
+      <%= Post.find(pub.post_id).description %>
+      <%= Post.find(pub.post_id).content %>
+      <%= User.find(Post.find(pub.post_id).user_id) %>
+      <button><%= link_to 'Sacar de mis Destacados', pub, method: :delete, data: { confirm: '¿Estas Seguro?' } %></button>
+      <br><br>
+    </tr>
+  <% end %>
+
+  <br><br>

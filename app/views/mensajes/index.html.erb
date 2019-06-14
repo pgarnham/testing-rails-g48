@@ -1,22 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Mensajes</h1>
-
+<h1>Mensajes Recibidos</h1>
 <table>
   <thead>
     <tr>
       <th>Autor</th>
-      <th>Receptor</th>
+      <th>Tema</th>
       <th>Contenido</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @mensajes.each do |mensaje| %>
+    <% @mensajes_recibidos.each do |mensaje| %>
       <tr>
-        <td><%= mensaje.autor %></td>
-        <td><%= mensaje.receptor %></td>
+        <td><%= User.find(mensaje.autor).name + " " + User.find(mensaje.autor).last_name %></td>
+        <td><%= mensaje.titulo %></td>
+        <td><%= mensaje.contenido %></td>
+        <td><%= link_to 'Show', mensaje %></td>
+        <td><%= link_to 'Edit', edit_mensaje_path(mensaje) %></td>
+        <td><%= link_to 'Destroy', mensaje, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<h1>Mensajes Enviados</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Destinatario</th>
+      <th>Tema</th>
+      <th>Contenido</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mensajes_enviados.each do |mensaje| %>
+      <tr>
+        <td><%= User.find(mensaje.receptor).name + " " + User.find(mensaje.receptor).last_name %></td>
+        <td><%= mensaje.titulo %></td>
         <td><%= mensaje.contenido %></td>
         <td><%= link_to 'Show', mensaje %></td>
         <td><%= link_to 'Edit', edit_mensaje_path(mensaje) %></td>
@@ -27,5 +51,4 @@
 </table>
 
 <br>
-
-<%= link_to 'New Mensaje', new_mensaje_path %>
+<button type="button" name="button"><%= link_to 'Enviar Nuevo Mensaje', new_mensaje_path %></button>
