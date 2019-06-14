@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mi Perfil</h1>
+<h3>Cursos Registrados</h3>
+<tbody>
+  <% Alumno.all.each do |alumno| %>
+    <tr>
+      <% if alumno.user_id == current_user.id %>
+        <td><h4><%= Course.find(alumno.course_id).initials + "  ---  " + Course.find(alumno.course_id).name %></h4></td>
+      <% end %>
+      <br>
+    </tr>
+  <% end %>
+
+
+  <%= simple_form_for(@alumno) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.select :course_id, options_for_select(@cursos_totales), :prompt => "Elige un Curso" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+
+</tbody>
+<br>
+
+<h3>Cursos Profesor Particular</h3>
+<tbody>
+  <% Ocupada.all.each do |ocupada| %>
+    <tr>
+      <td><h4><%= link_to ocupada.description, ocupada %></h4></td>
+      <td><%= ocupada.start.strftime("%H:%M --- %d/%m/%Y") %></td>
+      <td>   ||   </td>
+      <td><%= ocupada.start.strftime("%H:%M --- %d/%m/%Y") %></td>
+      <br>
+      <br>
+    </tr>
+  <% end %>
+</tbody>
+<br>
+
+<br>
+
+<%= link_to 'New Perfil', new_perfil_path %>
