@@ -7,7 +7,6 @@ class PerfilsController < ApplicationController
     @perfils = Perfil.all
     @cursos_totales = Course.all.map{ |c| [c.name, c.id] }
     @alumno = Alumno.new
-    #@cursos_mios = Alumno.where(:user_id => current_user.id).map{ |a| [Course.find(a.course_id).name, a.course_id] }
   end
 
   # GET /perfils/1

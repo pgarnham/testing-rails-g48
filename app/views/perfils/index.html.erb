@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div class="auto" id="auto" style="display: none">
+  <%= @yo_mismo = User.find(current_user.id) %>
+  <%= @cursos_inscritos = Alumno.where(:user_id => current_user.id) %>
+</div>
+
+
 <h1>Mi Perfil</h1>
 <h3>Cursos Registrados</h3>
 <tbody>
@@ -19,6 +25,9 @@
 
     <div class="form-inputs">
       <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+
+    <div class="form-inputs">
       <%= f.select :course_id, options_for_select(@cursos_totales), :prompt => "Elige un Curso" %>
     </div>
 
@@ -26,6 +35,26 @@
       <%= f.button :submit %>
     </div>
   <% end %>
+
+  <div class="container">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+        Eliminar un Curso Inscrito
+       <span class="caret"></span>
+     </a>
+    <ul class="dropdown-menu" role="menu">
+      <% @cursos_inscritos.each do |alumno| %>
+      <li>
+        <%= link_to Course.find(alumno.course_id).name, alumno, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </li>
+      <% end %>
+    </ul>
+  </li>
+  </ul>
+  </div>
+
+
 
 </tbody>
 <br>

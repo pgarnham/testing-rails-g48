@@ -18,6 +18,15 @@ class User < ApplicationRecord
     self.update(rol: rol_nuevo)
   end
 
+  def obtener_mis_cursos(id_actual)
+    @mis_inscritos = Alumno.where(:user_id => id_actual)
+    @mis_cursos = []
+    @mis_inscritos.each do |insc|
+      @mis_cursos << Course.find(insc.course_id)
+    end
+    return @mis_cursos
+  end
+
 
   #attr_accessible :first_name, :last_name
   #validates_presence_of :first_name, :last_name
