@@ -12,6 +12,61 @@
       <%= link_to "Salas de Estudio", salita_path %>
     </li>
   </ul>
+
 </div>
 
-<h1>Salas de Estudio</h1>
+<ul class="nav  navbar-nav navbar-left">
+<li class="dropdown">
+   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+     <% if params[:campu] %>
+      <%= Campu.find_by(name: params[:campu]).name %>
+     <% else %>
+      Campus
+     <% end %>
+     <span class="caret"></span>
+   </a>
+  <ul class="dropdown-menu" role="menu">
+    <% Campu.all.each do |campu| %>
+    <li class="<%= 'active' if params[:campu] == campu.name %>">
+      <%= link_to campu.name, salita_path(campu: campu.name), class: "link" %>
+    </li>
+    <% end %>
+  </ul>
+</li>
+</ul>
+
+
+
+<% if params[:campu] %>
+  <h1>Salas de Estudio de <%= params[:campu] %></h1>
+<% else %>
+  <h1>Salas de Estudio</h1>
+<% end %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Ubicacion</th>
+        <th>Disponibilidad</th>
+        <th>Ruido</th>
+        <th>Enchufes</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @rooms.each do |sala| %>
+        <tr>
+          <td><%= sala.name %></td>
+          <td><%= sala.location %></td>
+          <td><%= sala.disponibility %></td>
+          <td><%= sala.noise %></td>
+          <td><%= sala.plugs %></td>
+          <td><%= link_to 'Show', sala %></td>
+          <td><%= link_to 'Edit', edit_room_path(sala) %></td>
+          <td><%= link_to 'Destroy', campu_path(sala.campu_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
