@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :Título %>
     <%= form.text_field :title, id: :post_title %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :Contenido %>
     <%= form.text_area :content, id: :post_content %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :Descripción %>
     <%= form.text_field :description, id: :post_description %>
   </div>
 
@@ -32,6 +32,6 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Guardar" %>
   </div>
 <% end %>

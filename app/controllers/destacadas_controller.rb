@@ -28,7 +28,7 @@ class DestacadasController < ApplicationController
 
     respond_to do |format|
       if @destacada.save
-        format.html { redirect_to @destacada, notice: 'Destacada was successfully created.' }
+        format.html { redirect_to Post.find(@destacada.post_id), notice: 'Destacada was successfully created.' }
         format.json { render :show, status: :created, location: @destacada }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class DestacadasController < ApplicationController
   def destroy
     @destacada.destroy
     respond_to do |format|
-      format.html { redirect_to destacadas_url, notice: 'Destacada was successfully destroyed.' }
+      format.html { redirect_to perfils_path, notice: 'Destacada was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
