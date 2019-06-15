@@ -1,6 +1,6 @@
 class Busco < ApplicationRecord
 
-  has_many :RelacionBuscos
+  has_many :RelacionBuscos, :dependent => :destroy
   has_many :users, through: :RelacionBuscos
 
   def es_autor_busco(usuario_actual)

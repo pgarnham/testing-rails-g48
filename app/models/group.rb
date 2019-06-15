@@ -3,7 +3,7 @@ class Group < ApplicationRecord
   belongs_to :room
   belongs_to :course
   belongs_to :user
-  has_many :GroupMembers
+  has_many :GroupMembers, :dependent => :destroy
   has_many :Users, through: :GroupMembers
 
   def es_autor(usuario_actual)
