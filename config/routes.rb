@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :destacadas
   resources :profesors
   resources :alumnos
-  resources :mensajes, :except => [:edit] # Hacer esto con las demas cosas
-  resources :sol_admins #                   Tambien usar :only (en vez de edit)
+  resources :mensajes, :except => [:edit]
+  resources :sol_admins
   resources :sol_moderadors
-  resources :salita
+  resources :salita, :only => [:index]
   resources :registrados
   resources :moderadors
   resources :administradors

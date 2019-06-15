@@ -17,7 +17,6 @@
         <td><%= mensaje.titulo %></td>
         <td><%= mensaje.contenido %></td>
         <td><%= link_to 'Show', mensaje %></td>
-        <td><%= link_to 'Edit', edit_mensaje_path(mensaje) %></td>
         <td><%= link_to 'Destroy', mensaje, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -43,7 +42,6 @@
         <td><%= mensaje.titulo %></td>
         <td><%= mensaje.contenido %></td>
         <td><%= link_to 'Show', mensaje %></td>
-        <td><%= link_to 'Edit', edit_mensaje_path(mensaje) %></td>
         <td><%= link_to 'Destroy', mensaje, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

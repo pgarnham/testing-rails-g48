@@ -2,3 +2,59 @@
 <button> <%= link_to "Rol Administrador", administradors_path %> </button>
 <button> <%= link_to "Rol Moderador", moderadors_path %> </button>
 <button> <%= link_to "Rol Registrado", registrados_path %> </button>
+
+<br><br>
+
+<% if current_user.rol == "administrador" %>
+  <% SolAdmin.all.each do |solicitud| %>
+    <%= User.find(solicitud.user_id).name + " está solicitando ser Administrador" %>
+    <%= simple_form_for(@admin) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.hidden_field :user_id, :value => solicitud.user_id %>
+      <div class="form-actions">
+        <%= f.button :submit, 'Hacer Administrador' %>
+      </div>
+    <% end %>
+
+
+
+
+
+
+
+    <br><br>
+  <% end %>
+<% elsif current_user.rol == "registrado" %>
+    <%= simple_form_for(@solicitud_administrador) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="form-actions">
+        <%= f.button :submit, "Solicitar ser Administrador" %>
+      </div>
+    <% end %>
+    <br><br>
+    <%= simple_form_for(@solicitud_moderador) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="form-actions">
+        <%= f.button :submit, 'Solicitar ser Moderador' %>
+      </div>
+    <% end %>
+
+<% elsif current_user.rol == "moderador" %>
+    <%= simple_form_for(@solicitud_administrador) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="form-inputs">
+        <%= f.input :user_id %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+<% end %>

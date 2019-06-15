@@ -4,7 +4,11 @@ class ContenidosController < ApplicationController
   # GET /contenidos
   # GET /contenidos.json
   def index
+    @admin = Administrador.new
     @contenidos = Contenido.all
+    @solicitud_moderador = SolModerador.new
+    @solicitud_administrador = SolAdmin.new
+     #es solo auxiliar
   end
 
   # GET /contenidos/1
