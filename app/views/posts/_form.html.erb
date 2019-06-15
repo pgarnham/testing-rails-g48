@@ -26,6 +26,11 @@
     <%= form.text_field :description, id: :post_description %>
   </div>
 
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
   <div class="field">
     <%= form.hidden_field :reputation, :value => 0 %>
   </div>
