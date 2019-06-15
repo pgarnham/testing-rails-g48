@@ -16,4 +16,9 @@ class Group < ApplicationRecord
       return @ya_es_miembro
     end
 
+  def calcular_miembros
+    @miembros = GroupMember.where(:group_id => self.id)
+    return @miembros.length
+  end
+
 end

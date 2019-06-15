@@ -15,6 +15,7 @@ class RelacionBuscosController < ApplicationController
   # GET /relacion_buscos/new
   def new
     @relacion_busco = RelacionBusco.new
+    @grupo_r = params[:grupo_actual]
   end
 
   # GET /relacion_buscos/1/edit

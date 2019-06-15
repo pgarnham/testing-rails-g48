@@ -15,6 +15,7 @@ class OcupadasController < ApplicationController
   # GET /ocupadas/new
   def new
     @ocupada = Ocupada.new
+    @id_recibido = params[:room_id]
   end
 
   # GET /ocupadas/1/edit
@@ -69,6 +70,6 @@ class OcupadasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ocupada_params
-      params.require(:ocupada).permit(:description, :start, :finish)
+      params.require(:ocupada).permit(:description, :start, :finish, :room_id, :user_id)
     end
 end

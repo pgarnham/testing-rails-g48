@@ -8,7 +8,7 @@ class ContenidosController < ApplicationController
     @contenidos = Contenido.all
     @solicitud_moderador = SolModerador.new
     @solicitud_administrador = SolAdmin.new
-     #es solo auxiliar
+    @moderador = Moderador.new
   end
 
   # GET /contenidos/1

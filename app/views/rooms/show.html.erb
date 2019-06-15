@@ -1,29 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
   <%= @room.name %>
-</p>
+</h2>
 
 <p>
-  <strong>Location:</strong>
+  <strong>Ubicación:</strong>
   <%= @room.location %>
 </p>
 
 <p>
-  <strong>Disponibility:</strong>
+  <strong>Disponibilidad:</strong>
   <%= @room.disponibility %>
 </p>
 
 <p>
-  <strong>Noise:</strong>
+  <strong>Ruido:</strong>
   <%= @room.noise %>
 </p>
 
 <p>
-  <strong>Plugs:</strong>
+  <strong>Enchufes:</strong>
   <%= @room.plugs %>
 </p>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+
+
+<div class="container">
+  <button>
+    <%= link_to 'Crear Grupo de Estudio', new_group_path(:room_id  => @room.id) %>
+  </button>
+
+  <button>
+    <%= link_to 'Pedir Clases Particulares', new_busco_path(:room_id  => @room.id) %>
+  </button>
+
+
+  <button>
+    <%= link_to 'Ofrecer Clases Particulares', new_ofrezco_path(:room_id  => @room.id) %>
+  </button>
+
+  <button>
+    <%= link_to 'Evento Sala Ocupada', new_ocupada_path(:room_id  => @room.id) %>
+  </button>
+</div>
+
+<br>
+
+<button>
+  <%= link_to 'Volver', salita_path %>
+</button>

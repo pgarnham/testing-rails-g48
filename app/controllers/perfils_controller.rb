@@ -50,12 +50,16 @@ class PerfilsController < ApplicationController
       @mis_eventos << Group.find(ev.group_id)
     end
     @ev_busco = RelacionBusco.where(:user_id => current_user.id)
-    @ev_grupo.each do |busco|
-      @mis_eventos << Busco.find(ev.busco_id)
+    @ev_busco.each do |busco|
+      @mis_eventos << Busco.find(busco.busco_id)
     end
     @mis_ofrezcos = Ofrezco.where(:user_id => current_user.id)
     @mis_ofrezcos.each do |of|
       @mis_eventos << of
+    end
+    @mis_ocupadas = Ocupada.where(:user_id => current_user.id)
+    @mis_ocupadas.each do |oc|
+      @mis_eventos << oc
     end
   end
 

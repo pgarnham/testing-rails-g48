@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Course:</strong>
-  <%= @group.course %>
+  <strong>Grupo de estudio para:</strong>
+  <%= Course.find(@group.course_id).name %>
 </p>
 
 <p>
@@ -42,7 +42,3 @@
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', eventos_path %>
-
-<div style="display: none">
-  <%= $current_group_id = @group.id%>
-</div>

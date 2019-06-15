@@ -15,17 +15,20 @@ class OfrezcosController < ApplicationController
   # GET /ofrezcos/new
   def new
     @ofrezco = current_user.ofrezcos.build
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
+    @id_recibido = params[:room_id]
   end
 
   # GET /ofrezcos/1/edit
   def edit
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
   end
 
   # POST /ofrezcos
   # POST /ofrezcos.json
   def create
     @ofrezco = current_user.ofrezcos.build(ofrezco_params)
-
+    @ofrezco.course_id = params[:course_id]
     respond_to do |format|
       if @ofrezco.save
         format.html { redirect_to eventos_path, notice: 'Ofrezco was successfully created.' }
@@ -40,6 +43,7 @@ class OfrezcosController < ApplicationController
   # PATCH/PUT /ofrezcos/1
   # PATCH/PUT /ofrezcos/1.json
   def update
+    @ofrezco.course_id = params[:course_id]
     respond_to do |format|
       if @ofrezco.update(ofrezco_params)
         format.html { redirect_to eventos_path, notice: 'Ofrezco was successfully updated.' }
@@ -69,6 +73,6 @@ class OfrezcosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ofrezco_params
-      params.require(:ofrezco).permit(:course, :start, :finish, :user_id)
+      params.require(:ofrezco).permit(:start, :finish, :user_id, :course_id, :room_id)
     end
 end

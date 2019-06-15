@@ -28,9 +28,14 @@ class AdministradorsController < ApplicationController
 
     respond_to do |format|
       if @administrador.save
-        format.html { redirect_to contenidos_path, notice: 'Administrador was successfully created.' }
+
         format.json { render :show, status: :created, location: @administrador }
         User.find(@administrador.user_id).actualizar_rol("administrador")
+        @solicitud = SolAdmin.where(:user_id => @administrador.user_id)
+        format.html { redirect_to contenidos_path, notice:  "hola" }
+        @solicitud.each do |s|
+          s.destroy
+        end
       else
         format.html { render :new }
         format.json { render json: @administrador.errors, status: :unprocessable_entity }

@@ -4,7 +4,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :course %>
+    <%= select_tag(:course_id, options_for_select(@cursitos), :prompt => "Elige un Curso") %>
+    <%= f.hidden_field :room_id, :value => @id_recibido  %>
+    <%= f.hidden_field :user_id, :value => current_user.id  %>
+    <%= f.input :limit %>
     <%= f.input :start %>
     <%= f.input :finish %>
   </div>

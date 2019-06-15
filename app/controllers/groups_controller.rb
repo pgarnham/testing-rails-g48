@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = current_user.groups.build
+    @group = Group.new
     @cursitos = Course.all.map{ |c| [c.name, c.id]}
     @id_recibido = params[:room_id]
   end
@@ -27,11 +27,15 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.json
   def create
-    @group = current_user.groups.build(group_params)
+    @group = Group.new(group_params)
     @group.course_id = params[:course_id]
 
     respond_to do |format|
       if @group.save
+        @primer_miembro = GroupMember.new
+        @primer_miembro.user_id = @group.user_id
+        @primer_miembro.group_id = @group.id
+        @primer_miembro.save
         format.html { redirect_to eventos_path, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -74,6 +78,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:course, :capacity, :start, :finish, :room_id, :user_id, :course_id)
+      params.require(:group).permit(:capacity, :start, :finish, :room_id, :user_id, :course_id)
     end
 end

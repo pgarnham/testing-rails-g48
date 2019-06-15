@@ -12,27 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :Título %>
     <%= form.text_field :title, id: :post_title %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :Contenido %>
     <%= form.text_area :content, id: :post_content %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :Descripción %>
     <%= form.text_field :description, id: :post_description %>
   </div>
 
   <div class="field">
-    <%= form.label :reputation %>
-    <%= form.text_field :reputation, id: :post_reputation %>
+    <%= form.hidden_field :reputation, :value => 0 %>
   </div>
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Guardar" %>
   </div>
 <% end %>

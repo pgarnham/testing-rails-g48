@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Course:</strong>
-  <%= @busco.course %>
+  <strong>Buscando clases particulares para:</strong>
+  <%= Course.find(@busco.course_id).name %>
+</p>
+
+<p>
+  <strong>Capacidad:</strong>
+  <%= @busco.limit %>
 </p>
 
 <p>
@@ -14,6 +19,26 @@
   <strong>Finish:</strong>
   <%= @busco.finish %>
 </p>
+
+<div class="container">
+
+  <% RelacionBusco.all.each do |relacion| %>
+    <% if relacion.busco_id == @busco.id%>
+      <p>
+        <%= User.find(relacion.user_id).name + " " + User.find(relacion.user_id).last_name %>
+      </p>
+
+    <% end %>
+  <%end%>
+
+</div>
+
+
+<br>
+<button>
+<%= link_to "Unirse", new_relacion_busco_path(:grupo_actual => @busco.id) %>
+</button>
+<br>
 
 <%= link_to 'Edit', edit_busco_path(@busco) %> |
 <%= link_to 'Back', eventos_path %>
