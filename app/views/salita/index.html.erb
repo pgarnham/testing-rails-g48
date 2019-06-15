@@ -75,6 +75,8 @@
     </tbody>
   </table>
 
+ <%= @lat = -33.499063 %>
+ <%= @long = -70.614245 %>
 
   <head>
       <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -99,7 +101,7 @@
       <script>
 
         function initMap() {
-          var myLatLng = {lat: -33.499063, lng: -70.614245};
+          var myLatLng = {lat: <%= @lat %>, lng: <%= @long %>};
 
           var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,

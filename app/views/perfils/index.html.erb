@@ -114,8 +114,9 @@
 <h3>Mis Eventos</h3>
 
   <% @mis_eventos.each do |evento| %>
+
     <tr>
-      <% if evento.class == 'Busco' %>
+      <% if evento.class.to_s == 'Busco' %>
 
         <h5> Busco clases particulares de <%= Course.find(evento.course_id).name %> </h5>
         <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
@@ -123,14 +124,14 @@
         <h5> Término del evento: <%= evento.start %> </h5>
         <h5>Autor del evento: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name %></h5>
 
-      <% elsif evento.class == 'Ofrezco' %>
+      <% elsif evento.class.to_s == 'Ofrezco' %>
 
         <h5> Ofrezco clases particulares de <%= Course.find(evento.course_id).name %></h5>
         <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
         <h5> Fecha y hora del evento: <%= evento.start %> </h5>
         <h5> Término del evento: <%= evento.finish %> </h5>
 
-      <% elsif evento.class == 'Group' %>
+      <% elsif evento.class.to_s == "Group" %>
 
         <h5> Grupo de estudio para <%= Course.find(evento.course_id).name %> </h5>
         <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
@@ -138,13 +139,14 @@
         <h5> Término del Evento: <%= evento.finish %> </h5>
         <h5>Autor del evento: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name %></h5>
 
-      <% elsif evento.class == "Ocupada" %>
+      <% elsif evento.class.to_s == "Ocupada" %>
 
         <h5> Descripción: <%= evento.description %> </h5>
         <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
         <h5> Fecha y hora del evento: <%= evento.start %> </h5>
         <h5> Término del Evento: <%= evento.finish %> </h5>
       <% end %>
+      ----------------------------
       <br><br><br>
     </tr>
   <% end %>

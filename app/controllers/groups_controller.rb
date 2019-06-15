@@ -32,6 +32,10 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
+        @primer_miembro = GroupMember.new
+        @primer_miembro.user_id = @group.user_id
+        @primer_miembro.group_id = @group.id
+        @primer_miembro.save
         format.html { redirect_to eventos_path, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
