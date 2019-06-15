@@ -12,6 +12,7 @@
   <%= @new_destacada = Destacada.new %>
 </div>
 
+<div class="container">
 <%= simple_form_for(@new_destacada) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -22,11 +23,27 @@
   </div>
 <% end %>
 
+<div class="container">
+  <%= link_to like_post_path(@post), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @post.get_upvotes.size %></span>
+  <% end %>
+  --
+  <%= link_to unlike_post_path(@post), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @post.get_downvotes.size %></span>
+  <% end %>
+</div>
+</div>
+
 <p>
   <h3><%= @post.description %></h3>
 </p>
 <p>
   <h5><%= @post.content %></h5>
+
 </p>
 
 
