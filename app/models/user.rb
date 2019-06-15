@@ -14,11 +14,11 @@ class User < ApplicationRecord
   has_many :buscos, through: :RelacionBuscos
   has_many :groups, through: :GroupMembers
 
+
   def actualizar_rol(rol_nuevo)
     self.update(rol: rol_nuevo)
   end
-
-
+  acts_as_voter
   #attr_accessible :first_name, :last_name
   #validates_presence_of :first_name, :last_name
 end

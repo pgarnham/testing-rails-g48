@@ -1,0 +1,2 @@
+class Salitum < ApplicationRecord
+end

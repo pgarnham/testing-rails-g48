@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Autor:</strong>
+  <%= @mensaje.autor %>
+</p>
+
+<p>
+  <strong>Receptor:</strong>
+  <%= @mensaje.receptor %>
+</p>
+
+<p>
+  <strong>Contenido:</strong>
+  <%= @mensaje.contenido %>
+</p>
+
+<%= link_to 'Back', mensajes_path %>

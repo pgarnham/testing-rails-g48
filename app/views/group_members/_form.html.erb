@@ -4,11 +4,11 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
 
-  <%= f.hidden_field :grupo_id, :value => @grupo_r %>
+  <%= f.hidden_field :group_id, :value => @grupo_r %>
 
 <div style="display: none">
   <%= @grupo_act = Group.find(@grupo_r) %>
-  <%= @cant_actual = @grupo_act.group_members.length %>
+  <%= @cant_actual = @grupo_act.calcular_miembros %>
   <%= @es_autor = @grupo_act.es_autor(current_user.id) %>
 
 </div>
@@ -21,21 +21,12 @@
 
 
 <div class="form-actions">
-  <% if @cant_actual < @grupo_act.capacity %>
-        <% if not @es_autor %>
+  <% if (@cant_actual < @grupo_act.capacity) && (not @es_autor) %>
           <%= f.submit "Unirse al Grupo" %>
-        <% end %>
-      <% else %>
-        <%= link_to "Volver", eventos_path %>
-      <% end %>
+  <% else %>
+        <h4>No Puede Unirse: El grupo esta lleno, o usted ya forma parte del Grupo</h4>
+        <button type="button" name="button"><%= link_to "Volver", eventos_path %></button>
+  <% end %>
 </div>
 
-
-
-
-
-
-  <div class="form-actions">
-    <%= f.submit "Unirse" %>
-  </div>
 <% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Destacadas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Post</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @destacadas.each do |destacada| %>
+      <tr>
+        <td><%= destacada.user_id %></td>
+        <td><%= destacada.post_id %></td>
+        <td><%= link_to 'Show', destacada %></td>
+        <td><%= link_to 'Edit', edit_destacada_path(destacada) %></td>
+        <td><%= link_to 'Destroy', destacada, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Destacada', new_destacada_path %>

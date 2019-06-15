@@ -1,4 +1,62 @@
-<h2>Cambiar Roles</h2>
-<button> <%= link_to "Rol Administrador", administradors_path %> </button>
-<button> <%= link_to "Rol Moderador", moderadors_path %> </button>
-<button> <%= link_to "Rol Registrado", registrados_path %> </button>
+<h2>Solicitudes Generales</h2>
+
+<br><br>
+
+<% if current_user.rol == "administrador" %>
+  <% SolAdmin.all.each do |solicitud| %>
+    <%= User.find(solicitud.user_id).name + " está solicitando ser Administrador" %>
+    <%= simple_form_for(@admin) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.hidden_field :user_id, :value => solicitud.user_id %>
+      <div class="form-actions">
+        <%= f.button :submit, 'Hacer Administrador' %>
+      </div>
+    <% end %>
+    <% end %>
+
+    <% SolModerador.all.each do |solicitud| %>
+      <%= User.find(solicitud.user_id).name + " está solicitando ser Moderador" %>
+      <%= simple_form_for(@moderador) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.hidden_field :user_id, :value => solicitud.user_id %>
+        <div class="form-actions">
+          <%= f.button :submit, 'Hacer Moderador' %>
+        </div>
+      <% end %>
+      <% end %>
+    <br><br>
+
+<% elsif current_user.rol == "registrado" %>
+    <%= simple_form_for(@solicitud_administrador) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="form-actions">
+        <%= f.button :submit, "Solicitar ser Administrador" %>
+      </div>
+    <% end %>
+    <br><br>
+    <%= simple_form_for(@solicitud_moderador) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="form-actions">
+        <%= f.button :submit, 'Solicitar ser Moderador' %>
+      </div>
+    <% end %>
+
+<% elsif current_user.rol == "moderador" %>
+    <%= simple_form_for(@solicitud_administrador) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <div class="form-actions">
+        <%= f.button :submit, 'Solicitar ser Administrador' %>
+      </div>
+    <% end %>
+<% end %>
+
+<h2>Evaluacion de Salas</h2>

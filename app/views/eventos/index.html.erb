@@ -1,73 +1,128 @@
 <p id="notice"><%= notice %></p>
 
-<nav class="navbar navbar-default">
-  <div class="container">
-      <ul class="nav navbar-nav">
-        <% if user_signed_in? %>
-        <li><%= link_to "Publicaciones", posts_path %></li>
-        <li><%= link_to "Eventos", eventos_path %></li>
-        <li><%= link_to "Salas de Estudio", "#" %></li>
-        <% end %>
-      </ul>
-  </div>
-</nav>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%= link_to "Publicaciones", posts_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Eventos", eventos_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Salas de Estudio", salita_path %>
+    </li>
+  </ul>
+</div>
 
 <h1>Eventos</h1>
+<br><br>
 <h3>Eventos Salas Ocupadas</h3>
+
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">Sala</th>
+    <th scope="col">Descripción</th>
+    <th scope="col">Autor</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Hora Inicio</th>
+    <th scope="col">Hora Término</th>
+  </tr>
+</thead>
 <tbody>
-  <% Ocupada.all.each do |ocupada| %>
-    <tr>
-      <td><h4><%= link_to ocupada.description, ocupada %></h4></td>
-      <td><%= ocupada.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <td>   ||   </td>
-      <td><%= ocupada.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <br>
-      <br>
-    </tr>
-  <% end %>
+    <% Ocupada.all.each do |ocupada| %>
+      <tr>
+        <td><%= Room.find(ocupada.room_id).name %></td>
+        <td><%= link_to ocupada.description, ocupada%> </td>
+        <td><%= User.find(ocupada.user_id).name + " " + User.find(ocupada.user_id).last_name %></td>
+        <td><%= ocupada.start.strftime("%d/%m/%Y") %></td>
+        <td><%= ocupada.start.strftime("%H:%M") %></td>
+        <td><%= ocupada.finish.strftime("%H:%M") %></td>
+      </tr>
+    <% end %>
 </tbody>
+</table>
 
 <br>
 <h3>Eventos Busco Clases</h3>
+
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">Curso</th>
+    <th scope="col">Sala</th>
+    <th scope="col">Autor</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Hora Inicio</th>
+    <th scope="col">Hora Término</th>
+  </tr>
+</thead>
 <tbody>
-  <% Busco.all.each do |busco| %>
-    <tr>
-      <td><h4><%= link_to busco.course, busco %></h4></td>
-      <td><%= busco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <td>   ||   </td>
-      <td><%= busco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <br>
-      <br>
-    </tr>
-  <% end %>
+    <% Busco.all.each do |busco| %>
+      <tr>
+        <td><%= link_to "Busco clases de: " + Course.find(busco.course_id).name, busco %></td>
+        <td><%= Room.find(busco.room_id).name %></td>
+        <td><%= User.find(busco.user_id).name + " " + User.find(busco.user_id).last_name %></td>
+        <td><%= busco.start.strftime("%d/%m/%Y") %></td>
+        <td><%= busco.start.strftime("%H:%M") %></td>
+        <td><%= busco.finish.strftime("%H:%M") %></td>
+      </tr>
+    <% end %>
 </tbody>
+</table>
 
 <br>
 <h3>Eventos Ofrezco Clases</h3>
+
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">Curso</th>
+    <th scope="col">Sala</th>
+    <th scope="col">Autor</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Hora Inicio</th>
+    <th scope="col">Hora Término</th>
+  </tr>
+</thead>
 <tbody>
-  <% Ofrezco.all.each do |ofrezco| %>
-    <tr>
-      <td><h4><%= link_to ofrezco.course + "  ||  " + User.find(ofrezco.user_id).name + " " + User.find(ofrezco.user_id).last_name, ofrezco %></h4></td>
-      <td><%= ofrezco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <td>   ||   </td>
-      <td><%= ofrezco.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <br>
-      <br>
-    </tr>
-  <% end %>
+    <% Ofrezco.all.each do |ofrezco| %>
+      <tr>
+        <td><%= link_to "Ofrezco clases de: " + Course.find(ofrezco.course_id).name, ofrezco %></td>
+        <td><%= Room.find(ofrezco.room_id).name %></td>
+        <td><%= User.find(ofrezco.user_id).name + " " + User.find(ofrezco.user_id).last_name %></td>
+        <td><%= ofrezco.start.strftime("%d/%m/%Y") %></td>
+        <td><%= ofrezco.start.strftime("%H:%M") %></td>
+        <td><%= ofrezco.finish.strftime("%H:%M") %></td>
+      </tr>
+    <% end %>
 </tbody>
+</table>
 
 <br>
 <h3>Eventos Grupos de Estudio</h3>
+
+<table class="table">
+<thead>
+  <tr>
+    <th scope="col">Curso</th>
+    <th scope="col">Sala</th>
+    <th scope="col">Autor</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Hora Inicio</th>
+    <th scope="col">Hora Término</th>
+  </tr>
+</thead>
 <tbody>
-  <% Group.all.each do |group| %>
-    <tr>
-      <td><h4><%= link_to group.course + "  ||  " + group.capacity.to_s + "p.", group %></h4></td>
-      <td><%= group.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <td>   ||   </td>
-      <td><%= group.start.strftime("%H:%M --- %d/%m/%Y") %></td>
-      <br>
-      <br>
-    </tr>
-  <% end %>
+    <% Group.all.each do |group| %>
+      <tr>
+        <td><%= link_to "Estudio: " + Course.find(group.course_id).name, group %></td>
+        <td><%= Room.find(group.room_id).name %></td>
+        <td><%= User.find(group.user_id).name + " " + User.find(group.user_id).last_name %></td>
+        <td><%= group.start.strftime("%d/%m/%Y") %></td>
+        <td><%= group.start.strftime("%H:%M") %></td>
+        <td><%= group.finish.strftime("%H:%M") %></td>
+      </tr>
+    <% end %>
 </tbody>
+</table>

@@ -12,16 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :Contenido %>
     <%= form.text_area :content, id: :comment_content %>
   </div>
 
-  <div class="field">
-    <%= form.label :reputation %>
-    <%= form.text_field :reputation, id: :comment_reputation %>
-  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Guardar" %>
   </div>
 <% end %>

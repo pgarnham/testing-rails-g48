@@ -1,0 +1,2 @@
+class SolModerador < ApplicationRecord
+end

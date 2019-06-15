@@ -1,0 +1,131 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%= link_to "Publicaciones", posts_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Eventos", eventos_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Salas de Estudio", salita_path %>
+    </li>
+    <li class="nav-item">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+         <% if params[:campu] %>
+          <%= Campu.find_by(name: params[:campu]).name %>
+         <% else %>
+          Campus
+         <% end %>
+         <span class="caret"></span>
+       </a>
+      <ul class="dropdown-menu" role="menu">
+        <% Campu.all.each do |campu| %>
+        <li class="<%= 'active' if params[:campu] == campu.name %>">
+          <%= link_to campu.name, salita_path(campu: campu.name), class: "link" %>
+        </li>
+        <% end %>
+      </ul>
+    </li>
+
+  </ul>
+
+  <ul class="nav  navbar-nav navbar-left">
+
+  </ul>
+
+</div>
+
+
+
+
+
+<% if params[:campu] %>
+  <h1>Salas de Estudio de <%= params[:campu] %></h1>
+  <div class="auto" id="auto" style="display: none">
+    <%= @campu_actual = Campu.find_by(name:  params[:campu]) %>
+    <%= @lat = @campu_actual.latitud %>
+    <%= @long = @campu_actual.longitud %>
+</div>
+<% else %>
+  <div class="auto" id="auto" style="display: none">
+    <%= @lat = -33.499063 %>
+    <%= @long = -70.614245 %>
+  <h1>Salas de Estudio</h1>
+  </div>
+<% end %>
+
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Nombre Sala</th>
+      <th scope="col">Ubicación</th>
+      <th scope="col">Disponibilidad</th>
+      <th scope="col">Ruido</th>
+      <th scope="col">Enchufes</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @rooms.each do |sala| %>
+        <tr>
+          <th scope="row"><%= sala.id %></th>
+          <td><%= link_to sala.name, sala %></td>
+          <td><%= sala.location %></td>
+          <td><%= sala.disponibility %></td>
+          <td><%= sala.noise %></td>
+          <td><%= sala.plugs %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
+
+  <br>
+  <br>
+  <br>
+
+
+  <head>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta charset="utf-8">
+      <title>Simple Markers</title>
+      <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+          height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="map"></div>
+      <script>
+
+        function initMap() {
+          var myLatLng = {lat: <%= @lat %>, lng: <%= @long %>};
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng
+          });
+
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+        }
+      </script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6Xijyt-nnAUVkqCwWWr0d24jCGmpfylo&callback=initMap">
+      </script>
+    </body>

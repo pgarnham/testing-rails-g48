@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ruidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Room</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ruidos.each do |ruido| %>
+      <tr>
+        <td><%= ruido.room_id %></td>
+        <td><%= link_to 'Show', ruido %></td>
+        <td><%= link_to 'Edit', edit_ruido_path(ruido) %></td>
+        <td><%= link_to 'Destroy', ruido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ruido', new_ruido_path %>

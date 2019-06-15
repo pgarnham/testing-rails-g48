@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Enchuves</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Room</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enchuves.each do |enchufe| %>
+      <tr>
+        <td><%= enchufe.room_id %></td>
+        <td><%= link_to 'Show', enchufe %></td>
+        <td><%= link_to 'Edit', edit_enchufe_path(enchufe) %></td>
+        <td><%= link_to 'Destroy', enchufe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Enchufe', new_enchufe_path %>

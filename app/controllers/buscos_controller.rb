@@ -15,19 +15,27 @@ class BuscosController < ApplicationController
   # GET /buscos/new
   def new
     @busco = Busco.new
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
+    @id_recibido = params[:room_id]
   end
 
   # GET /buscos/1/edit
   def edit
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
   end
 
   # POST /buscos
   # POST /buscos.json
   def create
     @busco = Busco.new(busco_params)
+    @busco.course_id = params[:course_id]
 
     respond_to do |format|
       if @busco.save
+        @primero_buscando = RelacionBusco.new
+        @primero_buscando.user_id = @busco.user_id
+        @primero_buscando.busco_id = @busco.id
+        @primero_buscando.save
         format.html { redirect_to eventos_path, notice: 'Busco was successfully created.' }
         format.json { render :show, status: :created, location: @busco }
       else
@@ -40,6 +48,8 @@ class BuscosController < ApplicationController
   # PATCH/PUT /buscos/1
   # PATCH/PUT /buscos/1.json
   def update
+    @busco.course_id = params[:course_id]
+
     respond_to do |format|
       if @busco.update(busco_params)
         format.html { redirect_to eventos_path, notice: 'Busco was successfully updated.' }
@@ -69,6 +79,6 @@ class BuscosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def busco_params
-      params.require(:busco).permit(:course, :start, :finish, :evento_id)
+      params.require(:busco).permit(:start, :finish, :course_id, :user_id, :room_id, :limit)
     end
 end
