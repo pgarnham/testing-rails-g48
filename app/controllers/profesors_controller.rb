@@ -28,7 +28,7 @@ class ProfesorsController < ApplicationController
 
     respond_to do |format|
       if @profesor.save
-        format.html { redirect_to @profesor, notice: 'Profesor was successfully created.' }
+        format.html { redirect_to perfils_path, notice: 'Profesor was successfully created.' }
         format.json { render :show, status: :created, location: @profesor }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class ProfesorsController < ApplicationController
   def destroy
     @profesor.destroy
     respond_to do |format|
-      format.html { redirect_to profesors_url, notice: 'Profesor was successfully destroyed.' }
+      format.html { redirect_to perfils_path, notice: 'Profesor was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
