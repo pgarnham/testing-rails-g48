@@ -5,7 +5,8 @@
 
   <div class="form-inputs">
     <%= select_tag(:course_id, options_for_select(@cursitos), :prompt => "Elige un Curso") %>
-    <%= f.hidden_field :sala_id, :value => @id_recibido  %>
+    <%= f.hidden_field :room_id, :value => @id_recibido  %>
+    <%= f.hidden_field :user_id, :value => current_user.id  %>
     <%= f.input :capacity %>
     <%= f.input :start %>
     <%= f.input :finish %>

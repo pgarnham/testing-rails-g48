@@ -138,7 +138,7 @@
         <h5> Término del Evento: <%= evento.finish %> </h5>
         <h5>Autor del evento: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name %></h5>
 
-      <% else %>
+      <% elsif evento.class == "Ocupada" %>
 
         <h5> Descripción: <%= evento.description %> </h5>
         <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
@@ -158,7 +158,7 @@
       <%= Post.find(pub.post_id).title %>
       <%= Post.find(pub.post_id).description %>
       <%= Post.find(pub.post_id).content %>
-      <%= User.find(Post.find(pub.post_id).user_id) %>
+      <%= User.find(Post.find(pub.post_id).user_id).name + " " + User.find(Post.find(pub.post_id).user_id).last_name %>
       <button><%= link_to 'Sacar de mis Destacados', pub, method: :delete, data: { confirm: '¿Estas Seguro?' } %></button>
       <br><br>
     </tr>

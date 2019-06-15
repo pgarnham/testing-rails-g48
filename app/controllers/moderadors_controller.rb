@@ -28,8 +28,13 @@ class ModeradorsController < ApplicationController
 
     respond_to do |format|
       if @moderador.save
-        format.html { redirect_to @moderador, notice: 'Moderador was successfully created.' }
-        format.json { render :show, status: :created, location: @moderador }
+        format.json { render :show, status: :created, location: @moderador}
+        User.find(@moderador.user_id).actualizar_rol("administrador")
+        @solicitudes = SolModerador.where(:user_id => @moderador.user_id)
+        format.html { redirect_to contenidos_path, notice:  "hola" }
+        @solicitudes.each do |s|
+          s.destroy
+        end
       else
         format.html { render :new }
         format.json { render json: @moderador.errors, status: :unprocessable_entity }
@@ -69,6 +74,6 @@ class ModeradorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def moderador_params
-      params.fetch(:moderador, {})
+      params.require(:moderador).permit(:user_id)
     end
 end

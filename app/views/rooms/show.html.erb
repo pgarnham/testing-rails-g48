@@ -25,5 +25,19 @@
   <%= @room.plugs %>
 </p>
 
+
+
+<div class="container">
+  <button>
+    <%= link_to 'Crear Grupo de Estudio', new_group_path(:room_id  => @room.id) %>
+  </button>
+
+  <button>
+    <%= link_to 'Pedir Clases Particulares', new_busco_path(:room_id  => @room.id) %>
+  </button>
+</div>
+
+
+
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
