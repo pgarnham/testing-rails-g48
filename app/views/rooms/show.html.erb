@@ -35,6 +35,15 @@
   <button>
     <%= link_to 'Pedir Clases Particulares', new_busco_path(:room_id  => @room.id) %>
   </button>
+
+
+  <button>
+    <%= link_to 'Ofrecer Clases Particulares', new_ofrezco_path(:room_id  => @room.id) %>
+  </button>
+
+  <button>
+    <%= link_to 'Evento Sala Ocupada', new_ocupada_path(:room_id  => @room.id) %>
+  </button>
 </div>
 
 
