@@ -8,27 +8,25 @@
   <%= User.find(@post.user_id).name + " " + User.find(@post.user_id).last_name %>  |
   <%= @post.reputation %>
 </p>
+<div class="auto" id="auto" style="display: none">
+  <%= @new_destacada = Destacada.new %>
+</div>
 
+<%= simple_form_for(@new_destacada) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :post_id, :value => @post.id %>
+  <div class="form-actions">
+    <%= f.button :submit, 'Agregar Post a Favoritos' %>
+  </div>
+<% end %>
 
 <p>
   <h3><%= @post.description %></h3>
 </p>
 <p>
   <h5><%= @post.content %></h5>
-
-  <div class="auto" id="auto" style="display: none">
-    <%= @new_destacada = Destacada.new %>
-  </div>
-
-  <%= simple_form_for(@new_destacada) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :post_id, :value => @post.id %>
-    <div class="form-actions">
-      <%= f.button :submit, 'Agregar Post a Favoritos' %>
-    </div>
-  <% end %>
 </p>
 
 
@@ -53,6 +51,9 @@
 
     <% end %>
     <br>
+    <br>
+
+
     <button><%= link_to 'Nuevo Comentario', new_post_comment_path(@post) %></button>
   </div>
 

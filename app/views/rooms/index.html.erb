@@ -1,17 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 
-<nav class="navbar navbar-default">
-  <div class="container">
-      <ul class="nav navbar-nav">
-        <% if user_signed_in? %>
-        <li><%= link_to "Campus", campus_path %></li>
-        <li><%= link_to "Salas de Estudio", rooms_path %></li>
-        <li><%= link_to "Cursos", courses_path %></li>
-        <% end %>
-      </ul>
-  </div>
-</nav>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%= link_to "Campus", campus_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Salas de Estudio", rooms_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Cursos", courses_path %>
+    </li>
+  </ul>
+</div>
 
 <h1>Salas de Estudio</h1>
 

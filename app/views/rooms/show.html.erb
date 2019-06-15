@@ -1,27 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
   <%= @room.name %>
-</p>
+</h2>
 
 <p>
-  <strong>Location:</strong>
+  <strong>Ubicación:</strong>
   <%= @room.location %>
 </p>
 
 <p>
-  <strong>Disponibility:</strong>
+  <strong>Disponibilidad:</strong>
   <%= @room.disponibility %>
 </p>
 
 <p>
-  <strong>Noise:</strong>
+  <strong>Ruido:</strong>
   <%= @room.noise %>
 </p>
 
 <p>
-  <strong>Plugs:</strong>
+  <strong>Enchufes:</strong>
   <%= @room.plugs %>
 </p>
 
@@ -46,7 +45,8 @@
   </button>
 </div>
 
+<br>
 
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<button>
+  <%= link_to 'Volver', salita_path %>
+</button>
