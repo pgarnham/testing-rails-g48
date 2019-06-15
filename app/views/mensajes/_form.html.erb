@@ -4,12 +4,15 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :autor %>
-    <%= f.input :receptor %>
+    <br><br>
+    <%= f.hidden_field :autor, :value => current_user.id %>
+    <%= select_tag(:receptor, options_for_select(@usuarios), :prompt => "Elige un Destinatario") %>
+    <br><br>
+    <%= f.input :titulo %>
     <%= f.input :contenido %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, 'Enviar Mensaje' %>
   </div>
 <% end %>

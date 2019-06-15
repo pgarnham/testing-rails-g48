@@ -28,8 +28,9 @@ class AdministradorsController < ApplicationController
 
     respond_to do |format|
       if @administrador.save
-        format.html { redirect_to @administrador, notice: 'Administrador was successfully created.' }
+        format.html { redirect_to contenidos_path, notice: 'Administrador was successfully created.' }
         format.json { render :show, status: :created, location: @administrador }
+        User.find(@administrador.user_id).actualizar_rol("administrador")
       else
         format.html { render :new }
         format.json { render json: @administrador.errors, status: :unprocessable_entity }
@@ -69,6 +70,6 @@ class AdministradorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def administrador_params
-      params.fetch(:administrador, {})
+      params.require(:administrador).permit(:user_id)
     end
 end

@@ -22,7 +22,7 @@
 <h2>Comentarios</h2>
 
   <div class="container">
-    <%= @post.comments.each do |comment| %>
+    <% @post.comments.each do |comment| %>
         <small><%= comment.created_at.strftime("%d - %m - %Y") %> |
         <%= User.find(comment.user_id).name + " " + User.find(comment.user_id).last_name %>
         </small>

@@ -1,6 +1,22 @@
 <h1>Editing Room</h1>
 
-<%= render 'form', room: @room %>
+<%= simple_form_for(@room) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :location %>
+    <%= f.select :campu_id, @campuses %>
+    <%= f.hidden_field :disponibility, :value => 0 %>
+    <%= f.hidden_field :noise, :value => 0 %>
+    <%= f.hidden_field :plugs, :value => 0 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+  <% end %>
 
 <%= link_to 'Show', @room %> |
 <%= link_to 'Back', rooms_path %>
