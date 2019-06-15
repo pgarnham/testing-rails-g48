@@ -23,7 +23,53 @@
   <strong>Enchufes:</strong>
   <%= @room.plugs %>
 </p>
+<br>
+<div class="container">
+  Votar Disponibilidad
+  <%= link_to like_disponibilidad_path(@mi_ev_disp), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @mi_ev_disp.get_upvotes.size %></span>
+  <% end %>
+  --
+  <%= link_to unlike_disponibilidad_path(@mi_ev_disp), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @mi_ev_disp.get_downvotes.size %></span>
+  <% end %>
+</div>
+<br>
+<div class="container">
+  Votar Ruido
+  <%= link_to like_ruido_path(@mi_ev_ruido), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @mi_ev_ruido.get_upvotes.size %></span>
+  <% end %>
+  --
+  <%= link_to unlike_ruido_path(@mi_ev_ruido), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @mi_ev_ruido.get_downvotes.size %></span>
+  <% end %>
+</div>
+<br>
+<div class="container">
+  Votar Enchufes
+  <%= link_to like_enchufe_path(@mi_ev_enchufe), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @mi_ev_enchufe.get_upvotes.size %></span>
+  <% end %>
+  --
+  <%= link_to unlike_enchufe_path(@mi_ev_enchufe), class: "like", method: :put do %>
+  <button type="button" class="btn btn-info" aria-label="Left Align"></button>
+  <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+  <span class="badge"> <%= @mi_ev_enchufe.get_downvotes.size %></span>
+  <% end %>
+</div>
 
+<br><br>
 
 
 <div class="container">
