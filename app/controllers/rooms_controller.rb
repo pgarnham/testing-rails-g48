@@ -10,6 +10,9 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @mi_ev_ruido = Ruido.find_by(:room_id => @room.id)
+    @mi_ev_disp = Disponibilidad.find_by(:room_id => @room.id)
+    @mi_ev_enchufe = Enchufe.find_by(:room_id => @room.id)
   end
 
   # GET /rooms/new
@@ -31,6 +34,17 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+        @evaluacion_en = Enchufe.new
+        @evaluacion_en.room_id = @room.id
+        @evaluacion_en.save
+
+        @evaluacion_ruido = Ruido.new
+        @evaluacion_ruido.room_id = @room.id
+        @evaluacion_ruido.save
+
+        @evaluacion_disp = Disponibilidad.new
+        @evaluacion_disp.room_id = @room.id
+        @evaluacion_disp.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else

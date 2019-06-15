@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :ruidos
+  resources :disponibilidads
+  resources :enchuves
   resources :perfils
   resources :destacadas
   resources :profesors
@@ -32,6 +35,28 @@ Rails.application.routes.draw do
     member do
       put "like" => "posts#upvote"
       put "unlike" => "posts#downvote"
+    end
+  end
+
+
+  resources :disponibilidads do
+    member do
+      put "like" => "disponibilidads#upvote"
+      put "unlike" => "disponibilidads#downvote"
+    end
+  end
+
+  resources :enchuves do
+    member do
+      put "like" => "enchuves#upvote"
+      put "unlike" => "enchuves#downvote"
+    end
+  end
+
+  resources :ruidos do
+    member do
+      put "like" => "ruidos#upvote"
+      put "unlike" => "ruidos#downvote"
     end
   end
 root 'welcome#index'
