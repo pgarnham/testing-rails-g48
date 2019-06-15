@@ -43,8 +43,17 @@
 
 <% if params[:campu] %>
   <h1>Salas de Estudio de <%= params[:campu] %></h1>
+  <div class="auto" id="auto" style="display: none">
+    <%= @campu_actual = Campu.find_by(name:  params[:campu]) %>
+    <%= @lat = @campu_actual.latitud %>
+    <%= @long = @campu_actual.longitud %>
+</div>
 <% else %>
+  <div class="auto" id="auto" style="display: none">
+    <%= @lat = -33.499063 %>
+    <%= @long = -70.614245 %>
   <h1>Salas de Estudio</h1>
+  </div>
 <% end %>
 
 
@@ -78,8 +87,6 @@
   <br>
   <br>
 
- <%= @lat = -33.499063 %>
- <%= @long = -70.614245 %>
 
   <head>
       <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
