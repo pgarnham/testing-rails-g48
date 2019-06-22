@@ -6,6 +6,7 @@
   <div class="form-inputs">
     <br><br>
     <%= f.hidden_field :autor, :value => current_user.id %>
+    <%= f.hidden_field :existe, :value => 0 %>
     <%= select_tag(:receptor, options_for_select(@usuarios), :prompt => "Elige un Destinatario") %>
     <br><br>
     <%= f.input :titulo %>
