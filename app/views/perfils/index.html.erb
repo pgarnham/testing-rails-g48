@@ -27,20 +27,19 @@
     <%= simple_form_for(@alumno) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
       <div class="form-inputs">
         <%= f.hidden_field :user_id, :value => current_user.id %>
       </div>
 
       <div class="form-inputs">
-        <%= f.select :course_id, options_for_select(@cursos_totales_no_alumno), :prompt => "Elige un Curso" %>
+        <%= f.select(:course_id, options_for_select(@cursos_totales_no_alumno), {prompt: "Elige un Curso"}, {class: 'form-control'}) %>
       </div>
   </li>
 
 
   <li class="nav-item">
     <div class="form-actions">
-      <%= f.button :submit, "Ingresar Curso" %>
+      <%= f.button :submit, "Ingresar Curso", class: "btn btn-outline-primary" %>
     </div>
     <% end %>
   </li>
@@ -93,7 +92,7 @@
     </div>
 
     <div class="form-inputs">
-      <%= f.select :course_id, options_for_select(@cursos_totales_no_profe), :prompt => "Elige un Curso" %>
+      <%= f.select(:course_id, options_for_select(@cursos_totales_no_profe), {prompt: "Elige un Curso"}, {class: 'form-control'}) %>
     </div>
 </li>
 

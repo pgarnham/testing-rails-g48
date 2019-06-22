@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -14,8 +15,9 @@
   </ul>
 </div>
 
+<div class="contenedor-tot">
 
-<h1>Publicaciones</h1>
+<h1 class="titulo-izq">Publicaciones</h1>
 
 <% @posts.each do |post| %>
   <tr>
@@ -30,4 +32,5 @@
     <br>
   </tr>
 <% end %>
-<button> <%= link_to "Agregar Publicacion", new_post_path %> </button>
+<button type="button" class="button-crea"> <%= link_to "Agregar Publicacion", new_post_path %> </button>
+</div>

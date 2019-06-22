@@ -1,3 +1,26 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.prueba_boton{
+  background-color: red
+}
+
+.button-crea {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: white;
+  border: 2px solid #36c3d1; /* Green */
+  color: #36c3d1;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+
+}
+
+.button-crea:hover {
+  color: red
+}

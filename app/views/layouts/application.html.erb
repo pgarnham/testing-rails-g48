@@ -10,6 +10,7 @@
 
   <body>
 
+    <% if user_signed_in? %>
     <nav class="navbar navbar-default">
 
 
@@ -18,11 +19,6 @@
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
           <li><%= link_to current_user.name + " " + current_user.last_name, posts_path, class: "navbar-brand" %></li>
-
-          <% else %>
-          <li><%= link_to "Iniciar Sesion", new_user_session_path %></li>
-          <li><%= link_to "Registrarse", new_user_registration_path %></li>
-
           <% end %>
         </ul>
 
@@ -42,11 +38,29 @@
         </ul>
       </div>
     </nav>
+    
+    <% else %>
+    <div class="bienvenida">
+    <br>
+    <button type="button" class="button-crea" name="button"><%= link_to "Iniciar Sesion", new_user_session_path %></button>
+    <br>
+    <br>
+    <button type="button" class="button-crea" name="button"><%= link_to "Registrarse", new_user_registration_path %></button>
+    <br>
+    <br>
+    </div>
+
+    <% end %>
+
+
+
+
 
 
 
     <!--<p class="notice"><%= notice %></p>-->
     <!--<p class="alert"><%= alert %></p>-->
     <%= yield %>
+
   </body>
 </html>
