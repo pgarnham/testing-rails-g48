@@ -1,4 +1,6 @@
-<h2>Solicitudes Generales</h2>
+<div class="contenedor-tot">
+
+<h2 class="titulo-izq" >Solicitudes Generales</h2>
 
 <br><br>
 
@@ -34,7 +36,7 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <div class="form-actions">
-        <%= f.button :submit, "Solicitar ser Administrador" %>
+        <%= f.button :submit, "Solicitar ser Administrador"%>
       </div>
     <% end %>
     <br><br>
@@ -59,4 +61,4 @@
     <% end %>
 <% end %>
 
-<h2>Evaluacion de Salas</h2>
+</div>

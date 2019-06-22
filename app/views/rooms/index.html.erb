@@ -14,8 +14,8 @@
     </li>
   </ul>
 </div>
-
-<h1>Salas de Estudio</h1>
+<div class="contenedor-tot">
+<h1 class="titulo-izq">Salas de Estudio</h1>
 
 <tbody>
   <% @rooms.each do |room| %>
@@ -33,8 +33,8 @@
     </tr>
   <% end %>
 </tbody>
-</table>
 
 <br>
 
-<button><%= link_to 'Crear Sala', new_room_path %></button>
+<button class="button-crea"><%= link_to 'Crear Sala', new_room_path %></button>
+</div>
