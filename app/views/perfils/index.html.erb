@@ -5,9 +5,9 @@
   <%= @cursos_inscritos = Alumno.where(:user_id => current_user.id) %>
 </div>
 
-
-<h1>Mi Perfil</h1>
-<h3>Cursos Registrados</h3>
+<div class="contenedor-tot">
+<h1 class="titulo-izq" >Mi Perfil</h1>
+<h3 class="titulo-izq" >Cursos Registrados</h3>
 <tbody>
   <% Alumno.all.each do |alumno| %>
     <tr>
@@ -66,7 +66,7 @@
 </tbody>
 <br>
 
-<h3>Cursos Profesor Particular</h3>
+<h3 class="titulo-izq" >Cursos Profesor Particular</h3>
 <tbody>
   <% Profesor.all.each do |profe| %>
     <tr>
@@ -123,7 +123,7 @@
 <br><br>
 
 
-<h3>Mis Eventos</h3>
+<h3 class="titulo-izq" >Mis Eventos</h3>
 
   <% @mis_eventos.each do |evento| %>
 
@@ -165,7 +165,7 @@
 <br><br>
 
 
-<h3>Mis Publicaciones Destacadas</h3>
+<h3 class="titulo-izq" >Mis Publicaciones Destacadas</h3>
 
   <% @mis_publicaciones.each do |pub| %>
     <tr>
@@ -179,3 +179,6 @@
   <% end %>
 
   <br><br>
+
+
+  </div>
