@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+
+<% @mensajes_del_chat.each do |msj| %>
+	<%= User.find(msj.autor).name + " " + User.find(msj.autor).last_name + ": " + msj.contenido + "\n" %><br><br>
+<% end %>
+
+
+<%= simple_form_for(@nuevo_mensaje) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <br><br>
+    <%= f.hidden_field :autor, :value => current_user.id %>
+    <%= f.hidden_field :receptor, :value => @amigo %>
+    <%= f.hidden_field :chat_id, :value => @chat.id %>
+    <%= f.hidden_field :existe, :value => 1 %>
+    <br><br>
+    <%= f.input :titulo %>
+    <%= f.input :contenido %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Enviar Mensaje' %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', chats_path %>

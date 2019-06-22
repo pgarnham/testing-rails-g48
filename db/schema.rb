@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190615225534) do
+ActiveRecord::Schema.define(version: 20190622214653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 20190615225534) do
     t.datetime "updated_at", null: false
     t.float "latitud"
     t.float "longitud"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "primero"
+    t.integer "segundo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -123,6 +130,8 @@ ActiveRecord::Schema.define(version: 20190615225534) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "titulo"
+    t.integer "chat_id"
+    t.integer "existe"
   end
 
   create_table "moderadors", force: :cascade do |t|

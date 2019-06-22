@@ -16,7 +16,23 @@ class MensajesController < ApplicationController
   # GET /mensajes/new
   def new
     @mensaje = Mensaje.new
-    @todos_menos_yo = User.where.not(:id => current_user.id)
+
+    @set_contactos = Set.new
+    Chat.all.each do |chat|
+      if chat.primero == current_user.id
+        @set_contactos << chat.segundo
+      elsif chat.segundo == current_user.id
+        @set_contactos << chat.primero
+      end
+    end
+
+    @set_contactos << current_user.id
+    @todos_menos_yo = []
+    User.all.each do |usuario|
+      if @set_contactos.exclude?(usuario.id)
+        @todos_menos_yo << usuario
+      end
+    end
     @usuarios = @todos_menos_yo.map{ |c| [c.name + " " + c.last_name, c.id]}
   end
 
@@ -33,8 +49,19 @@ class MensajesController < ApplicationController
     @mensaje.receptor = params[:receptor]
     respond_to do |format|
       if @mensaje.save
-        format.html { redirect_to @mensaje, notice: 'Mensaje was successfully created.' }
-        format.json { render :show, status: :created, location: @mensaje }
+        if @mensaje.existe == 1
+          format.html { redirect_to Chat.find(@mensaje.chat_id), notice: 'Mensaje was successfully created.' }
+          format.json { render :show, status: :created, location: @mensaje }
+        else
+          @nuevo_chat = Chat.new
+          @nuevo_chat.primero = current_user.id
+          @nuevo_chat.segundo = @mensaje.receptor
+          @nuevo_chat.save
+          @mensaje.chat_id = @nuevo_chat.id
+          @mensaje.save
+          format.html { redirect_to @nuevo_chat, notice: 'Mensaje was successfully created.' }
+          format.json { render :show, status: :created, location: @mensaje }
+        end
       else
         format.html { render :new }
         format.json { render json: @mensaje.errors, status: :unprocessable_entity }
@@ -75,6 +102,6 @@ class MensajesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mensaje_params
-      params.require(:mensaje).permit(:autor, :receptor, :contenido, :titulo)
+      params.require(:mensaje).permit(:autor, :receptor, :contenido, :titulo, :chat_id, :existe)
     end
 end
