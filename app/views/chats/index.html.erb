@@ -1,30 +1,35 @@
 <p id="notice"><%= notice %></p>
 
+<div class="contenedor-tot">
+<h1 class="titulo-izq" >Chats</h1>
 
-<h1>Chats</h1>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Contacto</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @chats.each do |chat| %>
-      <tr>
-        <% if chat.primero == current_user.id %>
-          <td><%= link_to User.find(chat.segundo).name + " " + User.find(chat.segundo).last_name, chat %></td>
-        <% elsif chat.segundo == current_user.id %>
-          <td><%= link_to User.find(chat.primero).name + " " + User.find(chat.primero).last_name, chat %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @chats.each do |chat| %>
+      <% if chat.primero == current_user.id %>
+        <div class="contenedor-nombres-mensajes">
+          <%= link_to User.find(chat.segundo).name + " " + User.find(chat.segundo).last_name, chat %>
+        </div>
+      <% elsif chat.segundo == current_user.id %>
+        <div class="contenedor-nombres-mensajes">
+          <%= link_to User.find(chat.primero).name + " " + User.find(chat.primero).last_name, chat %>
+        </div>
+      <% end %>
+      <br>
+  <% end %>
 
 <br>
 
-<%= link_to 'New Chat', new_mensaje_path %>
+<%= simple_form_for(@mensaje) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.hidden_field :autor, :value => current_user.id %>
+    <%= f.hidden_field :existe, :value => 0 %>
+    <%= f.select(:receptor, options_for_select(@usuarios), {prompt: "Elige un Destinatario"}, {class: 'form-control'}) %>
+    <%= f.input :contenido, label: false %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, 'Nuevo Chat' %>
+  </div>
+<% end %>
+</div>
