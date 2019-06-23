@@ -45,7 +45,7 @@ class RoomsController < ApplicationController
         @evaluacion_disp = Disponibilidad.new
         @evaluacion_disp.room_id = @room.id
         @evaluacion_disp.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to rooms_path, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }

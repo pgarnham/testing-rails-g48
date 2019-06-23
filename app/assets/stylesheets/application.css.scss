@@ -56,3 +56,42 @@
   margin-left: 50px;
   margin-right: 50px;
 }
+
+.boton-estrella{
+  color: #36c3d1;
+  border-radius: 3px;
+  background-color: white;
+  border: 2px solid #36c3d1;
+}
+
+.boton-menor{
+  color: #154D52;
+  border-radius: 3px;
+  background-color: white;
+  border: 2px solid #154D52;
+}
+
+.titulo-foro{
+  border-left: 10px solid #154D52;
+  color: #154D52;
+  background-color: #DCEBEC;
+  padding: 5px 5px 5px 5px;
+}
+
+.contenedor-post{
+  border-radius: 5px;
+  background-color: #EDFEFF;
+  padding-left: 10px;
+}
+
+.contenedor-comentarios{
+  background-color: white;
+  border-left: 5px solid #154D52;
+  padding: 15px 15px 15px 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.contenedor-c-comentario{
+  border-bottom: 1px;
+}
