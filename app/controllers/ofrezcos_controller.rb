@@ -15,7 +15,14 @@ class OfrezcosController < ApplicationController
   # GET /ofrezcos/new
   def new
     @ofrezco = current_user.ofrezcos.build
-    @cursitos = Course.all.map{ |c| [c.name, c.id]}
+
+    @soy_profe = Profesor.where(user_id: current_user.id)
+    @mis_cursitos = []
+    @soy_profe.each do |prof|
+      @mis_cursitos << Course.find(prof.course_id)
+    end
+
+    @cursitos = @mis_cursitos.map{ |c| [c.name, c.id]}
     @id_recibido = params[:room_id]
   end
 
