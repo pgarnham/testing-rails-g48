@@ -6,11 +6,11 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    if params[:campu].blank?
+    if params[:course].blank?
       @publicaciones = Post.all
     else
       @curso_id = Course.find_by(name: params[:course]).id
-      @publicaciones = Post.where(:course_id => @curso_id)
+      @publicaciones = Post.where(course_id: @curso_id)
     end
   end
 
@@ -29,6 +29,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
   end
 
   # POST /posts
@@ -36,6 +37,7 @@ class PostsController < ApplicationController
   def create
     #@post = Post.new(post_params)
     @post = current_user.posts.build(post_params)
+    @post.course_id = params[:course_id]
 
     respond_to do |format|
       if @post.save
@@ -51,6 +53,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    @post.course_id = params[:course_id]
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
