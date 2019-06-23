@@ -95,3 +95,54 @@
 .contenedor-c-comentario{
   border-bottom: 1px;
 }
+
+
+.contenedor-mensajeria{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  width: 600px;
+  height: 400px;
+  border-color: #36c3d1;
+  background-color: #ECF1FA;
+  padding: 10px 10px 10px 10px;
+  overflow-y: scroll;
+}
+
+.mensaje-derecha{
+  display: table;
+  margin-left: auto;
+  margin-right: 0px;
+  padding: 7px;
+  background-color: #bfd6d5;
+  text-align: right;
+  width: auto;
+  max-width: 300px;
+  border-radius: 15px;
+}
+
+.mensaje-izquierda{
+  display: table;
+  padding: 7px;
+  background-color: #FFFF;
+  width: auto;
+  max-width: 300px;
+  border-radius: 15px;
+}
+
+.contenedor-c-mensaje{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  width: 600px;
+}
+
+.contenedor-nombres-mensajes{
+  background-color: #EDFEFF;
+  border-left: 5px solid #154D52;
+  padding: 15px 15px 15px 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+}

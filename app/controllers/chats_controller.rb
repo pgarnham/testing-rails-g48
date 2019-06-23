@@ -5,6 +5,25 @@ class ChatsController < ApplicationController
   # GET /chats.json
   def index
     @chats = Chat.all
+    @mensaje = Mensaje.new
+
+    @set_contactos = Set.new
+    Chat.all.each do |chat|
+      if chat.primero == current_user.id
+        @set_contactos << chat.segundo
+      elsif chat.segundo == current_user.id
+        @set_contactos << chat.primero
+      end
+    end
+
+    @set_contactos << current_user.id
+    @todos_menos_yo = []
+    User.all.each do |usuario|
+      if @set_contactos.exclude?(usuario.id)
+        @todos_menos_yo << usuario
+      end
+    end
+    @usuarios = @todos_menos_yo.map{ |c| [c.name + " " + c.last_name, c.id]}
   end
 
   # GET /chats/1
