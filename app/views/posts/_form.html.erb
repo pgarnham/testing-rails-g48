@@ -26,6 +26,8 @@
     <%= form.text_field :description, id: :post_description %>
   </div>
 
+  <%= select_tag(:course_id, options_for_select(@cursitos), :prompt => "Elige un Curso") %>
+
   <div>
     <%= form.label :image %>
     <%= form.file_field :image %>

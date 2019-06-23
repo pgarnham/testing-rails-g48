@@ -12,6 +12,23 @@
     <li class="nav-item">
       <%= link_to "Salas de Estudio", salita_path %>
     </li>
+    <li class="nav-item">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+         <% if params[:course] %>
+          <%= Course.find_by(name: params[:course]).name %>
+         <% else %>
+          Curso
+         <% end %>
+         <span class="caret"></span>
+       </a>
+      <ul class="dropdown-menu" role="menu">
+        <% Course.all.each do |curso| %>
+        <li class="<%= 'active' if params[:course] == curso.name %>">
+          <%= link_to curso.name, posts_path(course: curso.name), class: "link" %>
+        </li>
+        <% end %>
+      </ul>
+    </li>
   </ul>
 </div>
 

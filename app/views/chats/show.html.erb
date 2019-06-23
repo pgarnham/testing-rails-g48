@@ -5,6 +5,8 @@
 	<%= User.find(msj.autor).name + " " + User.find(msj.autor).last_name + ": " + msj.contenido + "\n" %><br><br>
 <% end %>
 
+<%= @chat.primero %>
+<%= @chat.segundo %>
 
 <%= simple_form_for(@nuevo_mensaje) do |f| %>
   <%= f.error_notification %>
@@ -13,10 +15,13 @@
   <div class="form-inputs">
     <br><br>
     <%= f.hidden_field :autor, :value => current_user.id %>
+    -$$$<%= @amigo %>$$$
     <%= f.hidden_field :receptor, :value => @amigo %>
+    -$$$<%= @amigo %>$$$
     <%= f.hidden_field :chat_id, :value => @chat.id %>
     <%= f.hidden_field :existe, :value => 1 %>
     <br><br>
+    #<%= @amigo %>#
     <%= f.input :titulo %>
     <%= f.input :contenido %>
   </div>
@@ -28,3 +33,5 @@
 
 
 <%= link_to 'Back', chats_path %>
+
+-#<%= @amigo.class %>#

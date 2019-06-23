@@ -1,6 +1,49 @@
 <h1>Editing Post</h1>
 
-<%= render 'form', post: @post %>
+<%= form_with(model: @post, local: true) do |form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Título %>
+    <%= form.text_field :title, id: :post_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Contenido %>
+    <%= form.text_area :content, id: :post_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Descripción %>
+    <%= form.text_field :description, id: :post_description %>
+  </div>
+
+  <%= select_tag(:course_id, options_for_select(@cursitos), :prompt => "Elige un Curso") %>
+
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :reputation, :value => 0 %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "Guardar" %>
+  </div>
+<% end %>
 
 <button>
 <%= link_to 'Volver', @post %>

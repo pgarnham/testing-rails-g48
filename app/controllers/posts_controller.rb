@@ -5,6 +5,13 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+
+    if params[:campu].blank?
+      @publicaciones = Post.all
+    else
+      @curso_id = Course.find_by(name: params[:course]).id
+      @publicaciones = Post.where(:course_id => @curso_id)
+    end
   end
 
   # GET /posts/1
@@ -17,6 +24,7 @@ class PostsController < ApplicationController
   def new
     #@post = Post.new
     @post = current_user.posts.build
+    @cursitos = Course.all.map{ |c| [c.name, c.id]}
   end
 
   # GET /posts/1/edit
@@ -82,6 +90,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :created_at, :description, :reputation, :author, :image)
+      params.require(:post).permit(:title, :content, :created_at, :description, :reputation, :author, :image, :course_id)
     end
 end

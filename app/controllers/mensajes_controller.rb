@@ -46,7 +46,7 @@ class MensajesController < ApplicationController
   # POST /mensajes.json
   def create
     @mensaje = Mensaje.new(mensaje_params)
-    @mensaje.receptor = params[:receptor]
+    #@mensaje.receptor = params[:receptor]
     respond_to do |format|
       if @mensaje.save
         if @mensaje.existe == 1
