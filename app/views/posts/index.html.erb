@@ -37,6 +37,7 @@
 <h1 class="titulo-izq">Publicaciones</h1>
 
 <% @posts.each do |post| %>
+  <div class="contenedor-nombres-mensajes">
   <tr>
     <td><%= post.created_at.strftime("%d/%m/%Y") %></td>
     <br>
@@ -45,9 +46,9 @@
     <td> | </td>
     <td><%= post.reputation %></td>
     <br>
-    <br>
-    <br>
   </tr>
+  </div>
+  <br>
 <% end %>
 <button type="button" class="button-crea"> <%= link_to "Agregar Publicacion", new_post_path %> </button>
 </div>

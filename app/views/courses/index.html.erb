@@ -18,13 +18,15 @@
 
 <tbody>
   <% @courses.each do |course| %>
+    <div class="contenedor-nombres-mensajes">
     <tr>
       <td><h3><%= course.initials + "  ---  " + course.name %></h3></td>
       <td><%= link_to 'Editar', edit_course_path(course) %></td>  |
       <td><%= link_to 'Eliminar', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <br>
-      <br>
     </tr>
+    <br>
+    </div>
   <% end %>
 </tbody>
 
