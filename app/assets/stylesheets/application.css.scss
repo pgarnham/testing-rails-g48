@@ -16,7 +16,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-.bienvenida {
+.bienvenidaaa {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -25,7 +25,32 @@
   text-align: center;
   width: 250px;
   border-color: #36c3d1
+}
 
+.bienvenidaa {
+  border-style: double;
+  text-align: center;
+  width: 250px;
+  border-color: #36c3d1
+}
+
+.bienvenida {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-style: double;
+  text-align: center;
+  width: 250px;
+  border-color: #36c3d1
+
+}
+
+.centrar-pagina {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .button-crea {
@@ -150,5 +175,133 @@
 .letra-home{
   padding: 0px;
   font-size: 16px;
-  color: #333;
+  color: #ecf0f1;
+}
+
+
+
+$bgDefault   : #36c3d1;
+$bgHighlight : #36c3d1;
+$colDefault  : #ecf0f1;
+$colHighlight: #ffbbbc;
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        font-size: 13px;
+        font-weight: bold;
+        &:hover,  &:focus {
+          color: $colHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus, {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+
+.button-solicitud {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: white;
+  border: 2px solid #36c3d1; /* Green */
+  color: #36c3d1;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 250px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: 5fr 3fr 1fr 1fr;
+}
+
+.boton-aceptar{
+  background-color: #6ace92;
+  height: 75px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.boton-rechazar{
+  background-color: #ce6a6a;
+  height: 75px;
+  text-align: center;
+  font-size: 50px;
+}
+
+.inner-aceptar{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.boton-verde{
+  color: #6ace92;
+  background-color: #6ace92;
+  border-color: #6ace92;
+  font-size: 40px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+}
+
+boton-verde:hover{
+  background-color: #6ace92;
+}
+
+.boton-rojo{
+  color: #ce6a6a;
+  background-color: #ce6a6a;
+  border-color: #ce6a6a;
+  font-size: 40px;
+  width: 70px;
+  height: 70px;
+  text-align: left;
+}
+
+boton-rojo:hover{
+  background-color: #a05a5a;
+}
+
+.separacion-arriba{
+  margin-top: 25px;
 }

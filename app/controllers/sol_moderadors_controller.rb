@@ -28,7 +28,7 @@ class SolModeradorsController < ApplicationController
 
     respond_to do |format|
       if @sol_moderador.save
-        format.html { redirect_to @sol_moderador, notice: 'Sol moderador was successfully created.' }
+        format.html { redirect_to contenidos_path, notice: 'Sol moderador was successfully created.' }
         format.json { render :show, status: :created, location: @sol_moderador }
       else
         format.html { render :new }

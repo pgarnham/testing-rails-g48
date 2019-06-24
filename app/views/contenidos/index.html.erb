@@ -1,12 +1,14 @@
 <div class="contenedor-tot">
 
 <h2 class="titulo-izq" >Solicitudes Generales</h2>
-
-<br><br>
+<br>
 
 <% if current_user.rol == "administrador" %>
   <% SolAdmin.all.each do |solicitud| %>
-    <%= User.find(solicitud.user_id).name + " está solicitando ser Administrador" %>
+    <div class="contenedor-nombres-mensajes">
+    <div class="wrapper">
+    <div class="block"><h4 class="separacion-arriba"><%= User.find(solicitud.user_id).name + " está solicitando ser Administrador" %></h4></div>
+    <div class="block">
     <%= simple_form_for(@admin) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -15,10 +17,28 @@
         <%= f.button :submit, 'Hacer Administrador' %>
       </div>
     <% end %>
+    </div>
+    <div class="">
+      <a class="btn btn-info btn-lg boton-verde" href=<%=posts_path%> >
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+
+    </div>
+    <div class="">
+      <a class="btn btn-info btn-lg boton-rojo" href=<%=posts_path%> >
+        <span class="glyphicon glyphicon-remove"></span>
+      </a>
+    </div>
+    </div>
+    </div>
+    <br>
     <% end %>
 
     <% SolModerador.all.each do |solicitud| %>
-      <%= User.find(solicitud.user_id).name + " está solicitando ser Moderador" %>
+      <div class="contenedor-nombres-mensajes">
+      <div class="wrapper">
+      <div class="block"><%= User.find(solicitud.user_id).name + " está solicitando ser Moderador" %></div>
+      <div class="block">
       <%= simple_form_for(@moderador) do |f| %>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -27,8 +47,12 @@
           <%= f.button :submit, 'Hacer Moderador' %>
         </div>
       <% end %>
+      </div>
+      </div>
+      </div>
+      <br>
       <% end %>
-    <br><br>
+    <br>
 
 <% elsif current_user.rol == "registrado" %>
     <%= simple_form_for(@solicitud_administrador) do |f| %>
@@ -36,7 +60,7 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <div class="form-actions">
-        <%= f.button :submit, "Solicitar ser Administrador"%>
+        <%= f.button :submit, "Solicitar ser Administrador", class: "button-solicitud"%>
       </div>
     <% end %>
     <br><br>
@@ -45,7 +69,7 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <div class="form-actions">
-        <%= f.button :submit, 'Solicitar ser Moderador' %>
+        <%= f.button :submit, 'Solicitar ser Moderador', class: "button-solicitud" %>
       </div>
     <% end %>
 
@@ -56,7 +80,7 @@
       <%= f.hidden_field :user_id, :value => current_user.id %>
 
       <div class="form-actions">
-        <%= f.button :submit, 'Solicitar ser Administrador' %>
+        <%= f.button :submit, 'Solicitar ser Administrador', class: "button-solicitud" %>
       </div>
     <% end %>
 <% end %>

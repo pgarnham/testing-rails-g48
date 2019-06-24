@@ -28,7 +28,7 @@ class SolAdminsController < ApplicationController
 
     respond_to do |format|
       if @sol_admin.save
-        format.html { redirect_to @sol_admin, notice: 'Sol admin was successfully created.' }
+        format.html { redirect_to contenidos_path, notice: 'Sol admin was successfully created.' }
         format.json { render :show, status: :created, location: @sol_admin }
       else
         format.html { render :new }
