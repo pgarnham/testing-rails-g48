@@ -19,6 +19,7 @@
 
 <tbody>
   <% @rooms.each do |room| %>
+    <div class="contenedor-nombres-mensajes">
     <tr>
       <td><h3><%= room.name %></h3></td>
       <td><%= room.location %></td> ||
@@ -29,8 +30,9 @@
       <td><%= link_to 'Editar', edit_room_path(room) %></td>  |
       <td><%= link_to 'Eliminar', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <br>
-      <br>
     </tr>
+    </div>
+    <br>
   <% end %>
 </tbody>
 

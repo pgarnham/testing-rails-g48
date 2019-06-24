@@ -24,19 +24,13 @@
 
   <div class="form-inputs">
     <%= f.hidden_field :autor, :value => current_user.id %>
-    -$$$<%= @amigo %>$$$
     <%= f.hidden_field :receptor, :value => @amigo %>
-    -$$$<%= @amigo %>$$$
     <%= f.hidden_field :chat_id, :value => @chat.id %>
     <%= f.hidden_field :existe, :value => 1 %>
-<<<<<<< HEAD
     <br><br>
-    #<%= @amigo %>#
     <%= f.input :titulo %>
     <%= f.input :contenido %>
-=======
     <%= f.input :contenido, label: false%>
->>>>>>> css_final
   </div>
 
   <div class="form-actions">
@@ -45,13 +39,6 @@
 <% end %>
 </div>
 
-<%= @chat.primero %>
-<%= @chat.segundo %>
-
 <%= link_to 'Back', chats_path %>
 
-<<<<<<< HEAD
--#<%= @amigo.class %>#
-=======
 </div>
->>>>>>> css_final

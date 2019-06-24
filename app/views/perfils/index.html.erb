@@ -12,8 +12,9 @@
   <% Alumno.all.each do |alumno| %>
     <tr>
       <% if alumno.user_id == current_user.id %>
+        <div class="contenedor-nombres-mensajes">
         <td><h4><%= Course.find(alumno.course_id).initials + "  ---  " + Course.find(alumno.course_id).name %></h4></td>
-        <%= alumno.class %>
+        </div>
       <% end %>
       <br>
     </tr>
@@ -71,7 +72,9 @@
   <% Profesor.all.each do |profe| %>
     <tr>
       <% if profe.user_id == current_user.id %>
+        <div class="contenedor-nombres-mensajes">
         <td><h4><%= Course.find(profe.course_id).initials + "  ---  " + Course.find(profe.course_id).name %></h4></td>
+        </div>
       <% end %>
       <br>
     </tr>
@@ -130,36 +133,38 @@
     <tr>
       <% if evento.class.to_s == 'Busco' %>
 
-        <h5> Busco clases particulares de <%= Course.find(evento.course_id).name %> </h5>
-        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
-        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
-        <h5> Término del evento: <%= evento.start %> </h5>
-        <h5>Autor del evento: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name %></h5>
+        <div class="contenedor-nombres-mensajes">
+        <h5> <%= evento.start.strftime("%d/%m/%Y") + " || " + evento.start.strftime("%H:%M") + " - " + evento.finish.strftime("%H:%M") %> </h5>
+        <h4> <%= link_to "Busco clases particulares de: " + Course.find(evento.course_id).name, evento %> </h4>
+        <h5> Sala: <%= Room.find(evento.room_id).name + "  ||  "%> Autor: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name%></h5>
+        </div>
 
       <% elsif evento.class.to_s == 'Ofrezco' %>
 
-        <h5> Ofrezco clases particulares de <%= Course.find(evento.course_id).name %></h5>
-        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
-        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
-        <h5> Término del evento: <%= evento.finish %> </h5>
+        <div class="contenedor-nombres-mensajes">
+        <h5> <%= evento.start.strftime("%d/%m/%Y") + " || " + evento.start.strftime("%H:%M") + " - " + evento.finish.strftime("%H:%M") %> </h5>
+        <h4> <%= link_to "Ofrezco clases particulares de: " + Course.find(evento.course_id).name, evento %></h4>
+        <h5> Sala: <%= Room.find(evento.room_id).name %></h5>
+        </div>
 
       <% elsif evento.class.to_s == "Group" %>
 
-        <h5> Grupo de estudio para <%= Course.find(evento.course_id).name %> </h5>
-        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
-        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
-        <h5> Término del Evento: <%= evento.finish %> </h5>
-        <h5>Autor del evento: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name %></h5>
+        <div class="contenedor-nombres-mensajes">
+        <h5> <%= evento.start.strftime("%d/%m/%Y") + " || " + evento.start.strftime("%H:%M") + " - " + evento.finish.strftime("%H:%M") %> </h5>
+        <h4> <%= link_to "Grupo de estudio para: " + Course.find(evento.course_id).name, evento %> </h4>
+        <h5> Sala: <%= Room.find(evento.room_id).name + "  ||  "%> Autor: <%= User.find(evento.user_id).name + " " + User.find(evento.user_id).last_name%></h5>
+        </div>
 
       <% elsif evento.class.to_s == "Ocupada" %>
 
-        <h5> Descripción: <%= evento.description %> </h5>
-        <h5>En la sala: <%= Room.find(evento.room_id).name %></h5>
-        <h5> Fecha y hora del evento: <%= evento.start %> </h5>
-        <h5> Término del Evento: <%= evento.finish %> </h5>
+        <div class="contenedor-nombres-mensajes">
+        <h5> <%= evento.start.strftime("%d/%m/%Y") + " || " + evento.start.strftime("%H:%M") + " - " + evento.finish.strftime("%H:%M") %> </h5>
+        <h4> <%= link_to evento.description, evento %> </h4>
+        <h5> Sala: <%= Room.find(evento.room_id).name %></h5>
+        </div>
+
       <% end %>
-      ----------------------------
-      <br><br><br>
+      <br>
     </tr>
   <% end %>
 <br><br>
@@ -169,12 +174,16 @@
 
   <% @mis_publicaciones.each do |pub| %>
     <tr>
-      <%= Post.find(pub.post_id).title %>
-      <%= Post.find(pub.post_id).description %>
-      <%= Post.find(pub.post_id).content %>
-      <%= User.find(Post.find(pub.post_id).user_id).name + " " + User.find(Post.find(pub.post_id).user_id).last_name %>
+      <div class="contenedor-nombres-mensajes">
+      <h5><%= Post.find(pub.post_id).created_at.strftime("%d/%m/%Y") %></h5>
+      <h4><%= link_to Post.find(pub.post_id).title, Post.find(pub.post_id) %></h4>
+      <td><%= User.find(Post.find(pub.post_id).user_id).name + " " + User.find(Post.find(pub.post_id).user_id).last_name %></td>
+      <td> | </td>
+      <td><%= Post.find(pub.post_id).reputation %></td>
+
       <button><%= link_to 'Sacar de mis Destacados', pub, method: :delete, data: { confirm: '¿Estas Seguro?' } %></button>
-      <br><br>
+      <br>
+      </div>
     </tr>
   <% end %>
 

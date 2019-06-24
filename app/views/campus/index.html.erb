@@ -20,6 +20,7 @@
 
 <tbody>
   <% @campus.each do |campu| %>
+    <div class="contenedor-nombres-mensajes">
     <tr>
       <td><h3><%= campu.name %></h3></td>
       <td><%= campu.location %></td>
@@ -28,6 +29,7 @@
       <td><%= link_to 'Eliminar', campu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <br>
+    </div>
     <br>
   <% end %>
 </tbody>
