@@ -13,23 +13,28 @@
 
   <div class="field">
     <%= form.label :Título %>
+    <br>
     <%= form.text_field :title, id: :post_title %>
   </div>
 
   <div class="field">
     <%= form.label :Contenido %>
+    <br>
     <%= form.text_area :content, id: :post_content %>
   </div>
 
   <div class="field">
     <%= form.label :Descripción %>
+    <br>
     <%= form.text_field :description, id: :post_description %>
   </div>
-
+  <b><%= "Curso" %></b>
+  <br>
   <%= select_tag(:course_id, options_for_select(@cursitos), :prompt => "Elige un Curso") %>
-
+  <br>
+  <br>
   <div>
-    <%= form.label :image %>
+    <%= form.label :Imagen %>
     <%= form.file_field :image %>
   </div>
 
@@ -39,6 +44,6 @@
 
 
   <div class="actions">
-    <%= form.submit "Guardar" %>
+    <%= form.submit "Guardar", class: "button-crea"%>
   </div>
 <% end %>

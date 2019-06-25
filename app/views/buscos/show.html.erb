@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
+<div class="contenedor-tot">
 
-<p>
+<h2 class="titulo-izq">
   <strong>Buscando clases particulares para:</strong>
   <%= Course.find(@busco.course_id).name %>
-</p>
+</h2>
 
 <p>
   <strong>Capacidad:</strong>
@@ -11,15 +12,21 @@
 </p>
 
 <p>
-  <strong>Start:</strong>
-  <%= @busco.start %>
+  <strong>Fecha:</strong>
+  <%= @busco.start.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
-  <strong>Finish:</strong>
-  <%= @busco.finish %>
+  <strong>Hora Inicio:</strong>
+  <%= @busco.start.strftime("%H:%M") %>
 </p>
 
+<p>
+  <strong>Hora Término:</strong>
+  <%= @busco.finish.strftime("%H:%M") %>
+</p>
+
+<strong>Miembros:</strong>
 <div class="container">
 
   <% RelacionBusco.all.each do |relacion| %>
@@ -35,10 +42,10 @@
 
 
 <br>
-<button>
-<%= link_to "Unirse", new_relacion_busco_path(:grupo_actual => @busco.id) %>
-</button>
-<br>
+<%= link_to "Unirse", new_relacion_busco_path(:grupo_actual => @busco.id), class: "button-crea" %>
+<br><br>
 
-<%= link_to 'Edit', edit_busco_path(@busco) %> |
-<%= link_to 'Back', eventos_path %>
+<%= link_to 'Editar', edit_busco_path(@busco), class: "boton-menor" %> |
+<%= link_to 'Volver', eventos_path, class: "boton-menor" %>
+
+</div>

@@ -1,27 +1,35 @@
+<div class="contenedor-tot">
+
+
 <p id="notice"><%= notice %></p>
 
-<p>
+<h2 class="titulo-izq">
   <strong>Grupo de estudio para:</strong>
   <%= Course.find(@group.course_id).name %>
-</p>
+</h2>
 
 <p>
-  <strong>Capacity:</strong>
+  <strong>Capacidad:</strong>
   <%= @group.capacity %>
 </p>
 
 <p>
-  <strong>Start:</strong>
-  <%= @group.start %>
+  <strong>Fecha:</strong>
+  <%= @group.start.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
-  <strong>Finish:</strong>
-  <%= @group.finish %>
+  <strong>Hora Inicio:</strong>
+  <%= @group.start.strftime("%H:%M") %>
 </p>
 
-<div class="container">
+<p>
+  <strong>Hora Término:</strong>
+  <%= @group.finish.strftime("%H:%M") %>
+</p>
 
+<strong>Miembros:</strong>
+<div class="container">
   <% GroupMember.all.each do |relacion| %>
     <% if relacion.group_id == @group.id%>
       <p>
@@ -35,10 +43,10 @@
 
 
 <br>
-<button>
-<%= link_to "Unirse", new_group_member_path(:grupo_actual => @group.id) %>
-</button>
+<%= link_to "Unirse", new_group_member_path(:grupo_actual => @group.id), class: "button-crea"%>
 <br>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', eventos_path %>
+<%= link_to 'Editar', edit_group_path(@group), class: "boton-menor" %> |
+<%= link_to 'Volver', eventos_path, class: "boton-menor" %>
+
+</div>
