@@ -45,8 +45,12 @@
 <br>
 <%= link_to "Unirse", new_group_member_path(:grupo_actual => @group.id), class: "button-crea"%>
 <br>
-
-<%= link_to 'Editar', edit_group_path(@group), class: "boton-menor" %> |
+<% if @group.user_id == current_user.id %>
+  <%= link_to 'Editar', edit_group_path(@group), class: "boton-menor" %> |
+<% end %>
+<% if current_user.rol=="moderador" or current_user.rol=="administrador" %>
+  <%= link_to 'Eliminar', group_path(@group), method: :delete, data: {confirm: "Estas Seguro?"}, class: "boton-menor" %> |
+<% end %>
 <%= link_to 'Volver', eventos_path, class: "boton-menor" %>
 
 </div>
