@@ -1,8 +1,9 @@
-<h1>New Ocupada</h1>
+<div class="contenedor-tot">
+
+<h1 class="titulo-izq">Ocupar Sala</h1>
 
 <%= render 'form', eventos_path: @ocupada %>
 
 <br>
-<button>
-<%= link_to 'Atrás', eventos_path %>
-</button>
+<%= link_to 'Volver', eventos_path, class: "boton-menor" %>
+</div>

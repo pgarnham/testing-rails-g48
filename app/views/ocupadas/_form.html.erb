@@ -6,12 +6,15 @@
   <div class="form-inputs">
     <%= f.hidden_field :room_id, :value => @id_recibido  %>
     <%= f.hidden_field :user_id, :value => current_user.id  %>
-    <%= f.input :description %>
-    <%= f.input :start %>
-    <%= f.input :finish %>
+    <b>Descripción</b><br>
+    <%= f.input :description, label: false %>
+    <b>Inicio Evento</b><br>
+    <%= f.input :start, label: false %>
+    <b>Término Evento</b><br>
+    <%= f.input :finish, label: false %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Guardar", class: "button-crea" %>
   </div>
 <% end %>
