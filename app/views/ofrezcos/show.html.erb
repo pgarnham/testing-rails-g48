@@ -32,8 +32,12 @@
   $ <%= @ofrezco.precio %>
 </p>
 
-<%= link_to 'Volver', eventos_path, class: "boton-menor" %> |
-<% if @ofrezco.user_id == current_user.id or current_user.rol=="moderador" or current_user.rol=="administrador"%>
+
+<% if @ofrezco.user_id == current_user.id %>
   <%= link_to 'Editar', edit_ofrezco_path(@ofrezco), class: "boton-menor" %>
 <% end %>
+<% if current_user.rol=="moderador" or current_user.rol=="administrador" %>
+  <%= link_to 'Eliminar', ofrezco_path(@ofrezco), method: :delete, data: {confirm: "Estas Seguro?"}, class: "boton-menor" %> |
+<% end %>
+<%= link_to 'Volver', eventos_path, class: "boton-menor" %>
 </div>

@@ -24,7 +24,11 @@
   <strong>Hora Término:</strong>
   <%= @ocupada.finish.strftime("%H:%M") %>
 </p>
-
-<%= link_to 'Editar', edit_ocupada_path(@ocupada), class: "boton-menor" %> |
+<% if @ocupada.user_id == current_user.id %>
+  <%= link_to 'Editar', edit_ocupada_path(@ocupada), class: "boton-menor" %> |
+<% end %>
+<% if current_user.rol=="moderador" or current_user.rol=="administrador" %>
+  <%= link_to 'Eliminar', ocupada_path(@ocupada), method: :delete, data: {confirm: "Estas Seguro?"}, class: "boton-menor" %> |
+<% end %>
 <%= link_to 'Volver', eventos_path, class: "boton-menor" %>
 </div>

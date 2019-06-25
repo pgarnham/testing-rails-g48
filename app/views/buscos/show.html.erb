@@ -44,8 +44,12 @@
 <br>
 <%= link_to "Unirse", new_relacion_busco_path(:grupo_actual => @busco.id), class: "button-crea" %>
 <br><br>
-
-<%= link_to 'Editar', edit_busco_path(@busco), class: "boton-menor" %> |
+<% if @busco.user_id == current_user.id %>
+  <%= link_to 'Editar', edit_busco_path(@busco), class: "boton-menor" %> |
+<% end %>
+<% if current_user.rol=="moderador" or current_user.rol=="administrador" %>
+  <%= link_to 'Eliminar', busco_path(@busco), method: :delete, data: {confirm: "Estas Seguro?"}, class: "boton-menor" %> |
+<% end %>
 <%= link_to 'Volver', eventos_path, class: "boton-menor" %>
 
 </div>

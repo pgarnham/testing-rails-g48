@@ -61,7 +61,9 @@
 
         <% if user_signed_in? %>
           <% if comment.user_id == current_user.id or current_user.rol=="moderador" or current_user.rol=="administrador"%>
-            <%= link_to 'Editar', edit_post_comment_path(@post, comment) %> |
+            <% if comment.user_id == current_user.id %>
+              <%= link_to 'Editar', edit_post_comment_path(@post, comment) %> |
+            <% end %>
             <%= link_to 'Eliminar', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Está Seguro?' } %>
           <% end %>
         </div>
@@ -101,7 +103,9 @@
 <button class="boton-menor"><%= link_to 'Atrás', posts_path %></button>
 <% if user_signed_in? %>
   <% if @post.user_id == current_user.id or current_user.rol=="moderador" or current_user.rol=="administrador"%>
-    <button class="boton-menor"><%= link_to 'Editar', edit_post_path(@post) %></button>
+    <% if @post.user_id == current_user.id %>
+      <button class="boton-menor"><%= link_to 'Editar', edit_post_path(@post) %></button>
+    <% end %>
     <button class="boton-menor"><%= link_to 'Eliminar', post_path(@post), method: :delete, data: {confirm: "Estas Seguro?"} %></button>
   <% end %>
 <% end %>
