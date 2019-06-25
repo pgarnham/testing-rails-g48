@@ -1,7 +1,9 @@
-<h1>Nueva Publicación</h1>
+<div class="contenedor-tot">
+
+<h1 class="titulo-izq">Nueva Publicación</h1>
 
 <%= render 'form', post: @post %>
 
-<button>
-  <%= link_to 'Volver', posts_path %>
-</button>
+  <a class="boton-menor" href=<%= posts_path %>>Volver</a>
+
+</div>

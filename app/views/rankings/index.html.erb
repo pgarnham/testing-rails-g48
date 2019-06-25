@@ -1,0 +1,33 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%= link_to "Publicaciones", posts_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Eventos", eventos_path %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Salas de Estudio", salita_path %>
+    </li>
+    <li class="nav-item active">
+      <%= link_to "Ranking Profesores", rankings_path %>
+    </li>
+  </ul>
+</div>
+<br><br><br>
+<% @profes.each do |profe| %>
+    
+    <%= User.find(profe.user_id).name + " " + User.find(profe.user_id).last_name + " para el ramo: " + Course.find(profe.course_id).name %>
+
+    <div class="container">
+        <%= link_to like_profesor_path(profe), class: "like", method: :put do %>
+        <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+        <span class="badge"> <%= profe.get_upvotes.size %></span>
+        <% end %>
+        ||
+        <%= link_to unlike_profesor_path(profe), class: "like", method: :put do %>
+        <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+        <span class="badge"> <%= profe.get_downvotes.size %></span>
+        <% end %>
+    </div>
+<% end %>

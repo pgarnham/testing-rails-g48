@@ -80,6 +80,6 @@ class OfrezcosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ofrezco_params
-      params.require(:ofrezco).permit(:start, :finish, :user_id, :course_id, :room_id)
+      params.require(:ofrezco).permit(:start, :finish, :user_id, :course_id, :room_id, :precio)
     end
 end

@@ -1,18 +1,25 @@
+<div class="contenedor-tot">
+
 <p id="notice"><%= notice %></p>
 
+<h2 class="titulo-izq">
+  <strong>Ofrezco Clases Particulares de:</strong>
+  <%= Course.find(@ofrezco.course_id).name %>
+</h2>
+
 <p>
-  <strong>Course:</strong>
-  <%= @ofrezco.course_id %>
+  <strong>Fecha:</strong>
+  <%= @ofrezco.start.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
-  <strong>Start:</strong>
-  <%= @ofrezco.start %>
+  <strong>Hora Inicio:</strong>
+  <%= @ofrezco.start.strftime("%H:%M") %>
 </p>
 
 <p>
-  <strong>Finish:</strong>
-  <%= @ofrezco.finish %>
+  <strong>Hora Término:</strong>
+  <%= @ofrezco.finish.strftime("%H:%M") %>
 </p>
 
 <p>
@@ -20,7 +27,13 @@
   <%= User.find(@ofrezco.user_id).name + " " + User.find(@ofrezco.user_id).last_name%>
 </p>
 
-<%= link_to 'Atrás', eventos_path %> |
+<p>
+  <strong>Precio:</strong>
+  $ <%= @ofrezco.precio %>
+</p>
+
+<%= link_to 'Volver', eventos_path, class: "boton-menor" %> |
 <% if @ofrezco.user_id == current_user.id or current_user.rol=="moderador" or current_user.rol=="administrador"%>
-  <%= link_to 'Editar', edit_ofrezco_path(@ofrezco) %>
+  <%= link_to 'Editar', edit_ofrezco_path(@ofrezco), class: "boton-menor" %>
 <% end %>
+</div>
