@@ -303,7 +303,7 @@ boton-rojo:hover{
 }
 
 .separacion-arriba{
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .log-in{
@@ -363,4 +363,56 @@ boton-rojo:hover{
 
 .fondo-dropdown{
   border-top: 1px solid gray;
+}
+
+
+.button-solicitud-2 {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: white;
+  border: 2px solid #36c3d1; /* Green */
+  color: #36c3d1;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 250px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button-perfil{
+  display: inline-block;
+  background-color: white;
+  color: teal;
+  text-align: center;
+  font-size: 13px;
+  padding: 8px;
+  width: 150px;
+  border: 1px solid teal;
+}
+
+.dropdown-edit{
+  border: 0px;
+  font-size: 13px;
+  color: teal;
+}
+
+.log-in-2{
+  border-top: 10px solid #154D52;
+  text-align: center;
+  width: 250px;
+  background-color: #DCEBEC;
+
+}
+
+.centrar-log{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 50px;
+}
+
+.titulo-3{
+  color: #154D52;
+  text-align: center;
 }

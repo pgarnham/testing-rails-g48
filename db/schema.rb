@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 20190625053712) do
     t.text "content"
     t.datetime "created_at", null: false
     t.string "description"
-    t.float "reputation"
+    t.integer "reputation"
     t.string "author"
     t.datetime "updated_at", null: false
     t.integer "user_id"

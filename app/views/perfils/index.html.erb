@@ -33,14 +33,14 @@
       </div>
 
       <div class="form-inputs">
-        <%= f.select(:course_id, options_for_select(@cursos_totales_no_alumno), {prompt: "Elige un Curso"}, {class: 'form-control'}) %>
+        <%= f.select(:course_id, options_for_select(@cursos_totales_no_alumno), {prompt: "Elige un Curso"}, {class: 'form-control dropdown-edit'}) %>
       </div>
   </li>
 
 
   <li class="nav-item">
     <div class="form-actions">
-      <%= f.button :submit, "Ingresar Curso", class: "btn btn-outline-primary" %>
+      <%= f.button :submit, "Ingresar Curso", class: "button-perfil" %>
     </div>
     <% end %>
   </li>
@@ -95,14 +95,14 @@
     </div>
 
     <div class="form-inputs">
-      <%= f.select(:course_id, options_for_select(@cursos_totales_no_profe), {prompt: "Elige un Curso"}, {class: 'form-control'}) %>
+      <%= f.select(:course_id, options_for_select(@cursos_totales_no_profe), {prompt: "Elige un Curso"}, {class: 'form-control dropdown-edit'}) %>
     </div>
 </li>
 
 
 <li class="nav-item">
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "button-perfil" %>
   </div>
 <% end %>
 </li>
@@ -180,8 +180,8 @@
       <td><%= User.find(Post.find(pub.post_id).user_id).name + " " + User.find(Post.find(pub.post_id).user_id).last_name %></td>
       <td> | </td>
       <td><%= Post.find(pub.post_id).reputation %></td>
-
-      <button><%= link_to 'Sacar de mis Destacados', pub, method: :delete, data: { confirm: '¿Estas Seguro?' } %></button>
+      <br><br>
+      <button class="button-solicitud-2"><%= link_to 'Sacar de mis Destacados', pub, method: :delete, data: { confirm: '¿Estas Seguro?' } %></button>
       <br>
       </div>
     </tr>
