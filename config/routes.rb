@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rankings
+  resources :auxiliars
   resources :chats
   resources :ruidos
   resources :disponibilidads
@@ -44,6 +46,13 @@ Rails.application.routes.draw do
     member do
       put "like" => "disponibilidads#upvote"
       put "unlike" => "disponibilidads#downvote"
+    end
+  end
+
+  resources :profesors do
+    member do
+      put "like" => "profesors#upvote"
+      put "unlike" => "profesors#downvote"
     end
   end
 

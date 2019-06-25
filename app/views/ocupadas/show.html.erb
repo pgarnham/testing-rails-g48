@@ -1,19 +1,30 @@
+<div class="contenedor-tot">
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
+<h2 class="titulo-izq">
+  <strong>Sala:</strong>
+  <%= Room.find(@ocupada.room_id).name %>
+  <br>
+  <strong>Ocupada por:</strong>
   <%= @ocupada.description %>
+</h2>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @ocupada.start.strftime("%d/%m/%Y") %>
 </p>
 
 <p>
-  <strong>Start:</strong>
-  <%= @ocupada.start %>
+  <strong>Hora Inicio:</strong>
+  <%= @ocupada.start.strftime("%H:%M") %>
 </p>
 
 <p>
-  <strong>Finish:</strong>
-  <%= @ocupada.finish %>
+  <strong>Hora Término:</strong>
+  <%= @ocupada.finish.strftime("%H:%M") %>
 </p>
 
-<%= link_to 'Edit', edit_ocupada_path(@ocupada) %> |
-<%= link_to 'Back', eventos_path %>
+<%= link_to 'Editar', edit_ocupada_path(@ocupada), class: "boton-menor" %> |
+<%= link_to 'Volver', eventos_path, class: "boton-menor" %>
+</div>

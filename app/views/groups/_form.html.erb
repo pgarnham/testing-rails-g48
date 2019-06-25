@@ -4,15 +4,27 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <b><%= "Curso" %></b>
+    <br>
     <%= select_tag(:course_id, options_for_select(@cursitos), :prompt => "Elige un Curso") %>
     <%= f.hidden_field :room_id, :value => @id_recibido  %>
     <%= f.hidden_field :user_id, :value => current_user.id  %>
-    <%= f.input :capacity %>
-    <%= f.input :start %>
-    <%= f.input :finish %>
+    <br><br>
+
+    <b>Capacidad</b>
+    <br>
+    <%= f.input :capacity, label: false %>
+    <br>
+
+    <b>Hora Inicio</b>
+    <br>
+    <%= f.input :start, label: false %>
+    <br>
+    <b>Hora Término</b>
+    <%= f.input :finish, label: false %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Guardar", class: "button-crea"%>
   </div>
 <% end %>

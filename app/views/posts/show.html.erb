@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 
 <div class="contenedor-tot">
@@ -25,7 +24,6 @@
   <%= @post.created_at.strftime("%d - %m - %Y") %> |
   <%= User.find(@post.user_id).name + " " + User.find(@post.user_id).last_name %>  |
   <%= @post.reputation %>
-  <%= @post.course_id %>
 </p>
 <div class="container">
 

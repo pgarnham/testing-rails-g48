@@ -5,13 +5,40 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-
+    @publicaciones = []
     if params[:course].blank?
       @publicaciones = Post.all
     else
-      @curso_id = Course.find_by(name: params[:course]).id
-      @publicaciones = Post.where(course_id: @curso_id)
+      if params[:course] == "Mis Cursos"
+        @mis_cursos_act = []
+        Alumno.all.each do |alu|
+          if alu.user_id == current_user.id
+            @mis_cursos_act << Course.find(alu.course_id)
+          end
+        end
+        Profesor.all.each do |profe|
+          if profe.user_id == current_user.id
+            @mis_cursos_act << Course.find(profe.course_id)
+          end
+        end
+        @mis_cursos_act.each do |curs|
+          @actuales = Post.where(course_id: curs.id)
+          @actuales.each do |act|
+            @publicaciones << act
+          end
+        end
+      else
+        @curso_id = Course.find_by(name: params[:course]).id
+        @publicaciones = Post.where(course_id: @curso_id)
+      end
     end
+
+    @para_elegir = []
+    Course.all.each do |cursito|
+      @para_elegir << cursito
+    end
+    @aux = Auxiliar.find_by(name: "Mis Cursos")
+    @para_elegir << @aux
   end
 
   # GET /posts/1
@@ -77,11 +104,15 @@ class PostsController < ApplicationController
 
   def upvote
     @post.upvote_from current_user
+    @post.reputation = @post.get_upvotes.size - @post.get_downvotes.size
+    @post.save
     redirect_to @post
   end
 
   def downvote
     @post.downvote_from current_user
+    @post.reputation = @post.get_upvotes.size - @post.get_downvotes.size
+    @post.save
     redirect_to @post
   end
 
