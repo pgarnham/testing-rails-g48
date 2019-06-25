@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :auxiliars
   resources :chats
   resources :ruidos
   resources :disponibilidads
