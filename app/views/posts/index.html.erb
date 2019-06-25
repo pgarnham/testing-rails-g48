@@ -27,9 +27,16 @@
        </a>
       <ul class="dropdown-menu" role="menu">
         <% @para_elegir.each do |curso| %>
+        <% if curso.name == "Mis Cursos" %>
+          <div class="dropdown-divider"></div>
+          <li class="<%= 'active' if params[:course] == curso.name %> fondo-dropdown">
+            <%= link_to curso.name, posts_path(course: curso.name), class: "link" %>
+          </li>
+        <% else %>
         <li class="<%= 'active' if params[:course] == curso.name %>">
           <%= link_to curso.name, posts_path(course: curso.name), class: "link" %>
         </li>
+        <% end %>
         <% end %>
       </ul>
     </li>
