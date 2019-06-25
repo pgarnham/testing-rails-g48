@@ -3,7 +3,7 @@
 
 <div class="container">
   <ul class="nav nav-tabs">
-    <li class="nav-item">
+    <li class="nav-item active">
       <%= link_to "Publicaciones", posts_path %>
     </li>
     <li class="nav-item">
@@ -15,17 +15,28 @@
     <li class="nav-item">
        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
          <% if params[:course] %>
-          <%= Course.find_by(name: params[:course]).name %>
+          <% if params[:course] == "Mis Cursos" %>
+            <%= "Mis Cursos" %>
+          <% else %>
+            <%= Course.find_by(name: params[:course]).name %>
+          <% end %>
          <% else %>
           Curso
          <% end %>
          <span class="caret"></span>
        </a>
       <ul class="dropdown-menu" role="menu">
-        <% Course.all.each do |curso| %>
+        <% @para_elegir.each do |curso| %>
+        <% if curso.name == "Mis Cursos" %>
+          <div class="dropdown-divider"></div>
+          <li class="<%= 'active' if params[:course] == curso.name %> fondo-dropdown">
+            <%= link_to curso.name, posts_path(course: curso.name), class: "link" %>
+          </li>
+        <% else %>
         <li class="<%= 'active' if params[:course] == curso.name %>">
           <%= link_to curso.name, posts_path(course: curso.name), class: "link" %>
         </li>
+        <% end %>
         <% end %>
       </ul>
     </li>
