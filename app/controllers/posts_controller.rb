@@ -104,11 +104,15 @@ class PostsController < ApplicationController
 
   def upvote
     @post.upvote_from current_user
+    @post.reputation = @post.get_upvotes.size - @post.get_downvotes.size
+    @post.save
     redirect_to @post
   end
 
   def downvote
     @post.downvote_from current_user
+    @post.reputation = @post.get_upvotes.size - @post.get_downvotes.size
+    @post.save
     redirect_to @post
   end
 
