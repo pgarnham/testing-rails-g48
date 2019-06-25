@@ -1,5 +1,5 @@
 class ProfesorsController < ApplicationController
-  before_action :set_profesor, only: [:show, :edit, :update, :destroy]
+  before_action :set_profesor, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /profesors
   # GET /profesors.json
@@ -28,6 +28,7 @@ class ProfesorsController < ApplicationController
 
     respond_to do |format|
       if @profesor.save
+        @profesor.puntaje = @profesor.get_upvotes.size - @profesor.get_downvotes.size
         format.html { redirect_to perfils_path, notice: 'Profesor was successfully created.' }
         format.json { render :show, status: :created, location: @profesor }
       else
@@ -61,6 +62,21 @@ class ProfesorsController < ApplicationController
     end
   end
 
+  def upvote
+    @profesor.upvote_from current_user
+    @profesor.puntaje = @profesor.get_upvotes.size - @profesor.get_downvotes.size
+    @profesor.save
+    redirect_to rankings_path
+  end
+
+  def downvote
+    @profesor.downvote_from current_user
+    @profesor.puntaje = @profesor.get_upvotes.size - @profesor.get_downvotes.size
+    @profesor.save
+    redirect_to rankings_path
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profesor
@@ -69,6 +85,6 @@ class ProfesorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profesor_params
-      params.require(:profesor).permit(:user_id, :course_id)
+      params.require(:profesor).permit(:user_id, :course_id, :puntaje)
     end
 end
