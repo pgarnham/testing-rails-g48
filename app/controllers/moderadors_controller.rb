@@ -29,7 +29,7 @@ class ModeradorsController < ApplicationController
     respond_to do |format|
       if @moderador.save
         format.json { render :show, status: :created, location: @moderador}
-        User.find(@moderador.user_id).actualizar_rol("administrador")
+        User.find(@moderador.user_id).actualizar_rol("moderador")
         @solicitudes = SolModerador.where(:user_id => @moderador.user_id)
         format.html { redirect_to contenidos_path, notice:  "hola" }
         @solicitudes.each do |s|
