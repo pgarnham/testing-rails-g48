@@ -9,7 +9,7 @@ end
 gem 'rubocop-performance'
 gem 'rails', '~> 5.1.5'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'popper_js', '~> 1.11', '>= 1.11.1'
